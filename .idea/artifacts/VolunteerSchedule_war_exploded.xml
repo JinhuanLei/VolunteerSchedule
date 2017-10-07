@@ -9,6 +9,8 @@
         <element id="directory" name="lib">
           <element id="library" level="project" name="Maven: org.json:json:20160810" />
           <element id="library" level="project" name="Maven: com.google.code.gson:gson:2.8.0" />
+          <element id="library" level="project" name="Maven: org.mybatis:mybatis:3.3.0" />
+          <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.29" />
         </element>
       </element>
       <element id="directory" name="META-INF">

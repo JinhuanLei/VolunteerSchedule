@@ -68,7 +68,8 @@
                     <div class="clear"></div>
                 </div>
             </form>
-            <form class="login active">
+            <%--登陆--%>
+            <form class="login active" action="index.jsp" method="post">
                 <h3>Login</h3>
                 <div>
                     <label>Username:</label>
@@ -82,7 +83,7 @@
                 </div>
                 <div class="bottom">
                     <div class="remember"><input type="checkbox" /><span>Keep me logged in</span></div>
-                    <input type="submit" value="Login"></input>
+                    <input type="submit" value="Login"/>
                     <a href="register.html" rel="register" class="linkform">You don't have an account yet? Register here</a>
                     <div class="clear"></div>
                 </div>
