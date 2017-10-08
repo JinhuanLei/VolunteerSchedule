@@ -1,6 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
 <head>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <title>Volunteer work scheduling website</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="description" content="Expand, contract, animate forms with jQuery wihtout leaving the page" />
@@ -69,21 +70,22 @@
                 </div>
             </form>
             <%--登陆--%>
-            <form class="login active" action="index.jsp" method="post">
+            <form class="login active">
                 <h3>Login</h3>
                 <div>
                     <label>Username:</label>
-                    <input type="text" />
+                    <input type="text"  id="username"/>
                     <span class="error">This is an error</span>
                 </div>
                 <div>
                     <label>Password: <a href="forgot_password.html" rel="forgot_password" class="forgot linkform">Forgot your password?</a></label>
-                    <input type="password" />
-                    <span class="error">This is an error</span>
+                    <input type="password"  id="password"/>
+                    <span class="error" id="loginerror">This is an error</span>
                 </div>
                 <div class="bottom">
                     <div class="remember"><input type="checkbox" /><span>Keep me logged in</span></div>
-                    <input type="submit" value="Login"/>
+
+                    <input type="submit" value="Login" onclick="Login()"/>
                     <a href="register.html" rel="register" class="linkform">You don't have an account yet? Register here</a>
                     <div class="clear"></div>
                 </div>
@@ -106,11 +108,44 @@
         <div class="clear"></div>
     </div></div>
 
+<script type="text/javascript">
 
+    function Login() {
+        var username =document.getElementById("username").value;
+        var password =document.getElementById("password").value;
+
+        $.ajax(
+            {
+                type: "POST" ,
+                url: "/loginServlet" ,
+                data: "username=" +username+"&password=" +password ,
+                dataType: "text" ,
+                success: function (data)
+                {
+                   if(data=="0")
+                   {
+                       var error = document.getElementById("loginerror");
+                       error.style.visibility="visible";
+                   }
+                    else
+                   {
+                       console.log("data is %s",data);
+                       window.location.href="https://www.google.com.hk/";
+                   }
+                }
+            }
+        );
+
+
+    }
+</script>
 
         <!-- The JavaScript -->
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
         <script type="text/javascript">
+
+
+
             $(function() {
                 //the form wrapper (includes all forms)
                 var $form_wrapper	= $('#form_wrapper'),
