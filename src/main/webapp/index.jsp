@@ -16,6 +16,17 @@
         Cufon.replace('h3',{ textShadow: '1px 1px #000'});
         Cufon.replace('.back');
     </script>
+    <style type="text/css">
+        .form_wrapper span.successinfer{
+            visibility:hidden;
+            color:green;
+            font-size:11px;
+            font-style:italic;
+            display:block;
+            margin:-10px 30px 5px 185px;
+        }
+    </style>
+
 </head>
 <body>
 <div class="wrapper">
@@ -28,43 +39,44 @@
                 <div class="column">
                     <div>
                         <label>Username:</label>
-                        <input type="text" />
+                        <input type="text" id="Rusername"/>
                         <span class="error">This is an error</span>
                     </div>
                     <div>
                         <label>Password:</label>
-                        <input type="password" />
+                        <input type="password" id="Rpassword"/>
                         <span class="error">This is an error</span>
                     </div>
                     <div>
                         <label>Email:</label>
-                        <input type="text" />
+                        <input type="text" id="Remail" />
                         <span class="error">This is an error</span>
                     </div>
                 </div>
                 <div class="column">
                     <div>
                         <label>Phone Number:</label>
-                        <input type="text"/>
+                        <input type="text" id="Rphonenumber"/>
                         <span class="error">This is an error</span>
                     </div>
                     <div>
                         <label>Password again:</label>
-                        <input type="password" />
-                        <span class="error">This is an error</span>
+                        <input type="password" id="Rpassword2"/>
+                        <span class="error" id="passworderror">This is an error</span>
                     </div>
                     <div>
                         <label>city:</label>
-                        <input type="text" />
+                        <input type="text" id="Rcity"/>
                         <span class="error">This is an error</span>
                     </div>
                 </div>
+                <%--注册--%>
                 <div class="bottom">
                     <div class="remember">
                         <input type="checkbox" />
                         <span>Send me updates</span>
                     </div>
-                    <input type="submit" value="Register" />
+                    <input type="submit" value="Register" onclick="register()"/>
                     <a href="index.html" rel="login" class="linkform">You have an account already? Log in here</a>
                     <div class="clear"></div>
                 </div>
@@ -94,11 +106,12 @@
                 <h3>Forgot Password</h3>
                 <div>
                     <label>Username or Email:</label>
-                    <input type="text" />
-                    <span class="error">This is an error</span>
+                    <input type="text" id="Femail" spellcheck="false"/>
+                    <span class="error" id="emailerror">This is an error</span>
+                    <span class="successinfer" id="successinfer">send successfully</span>
                 </div>
                 <div class="bottom">
-                    <input type="submit" value="Send reminder"></input>
+                    <input type="submit" value="Send reminder" onclick="forgotpassword()"></input>
                     <a href="index.html" rel="login" class="linkform">Suddenly remebered? Log in here</a>
                     <a href="register.html" rel="register" class="linkform">You don't have an account? Register here</a>
                     <div class="clear"></div>
@@ -109,6 +122,61 @@
     </div></div>
 
 <script type="text/javascript">
+    
+    function forgotpassword() {
+      var email=document.getElementById("Femail").value;
+        var error = document.getElementById("emailerror");
+        error.style.visibility="hidden";
+        var reg = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/;
+        var isok= reg.test(email);
+        console.log(isok);
+      if (email==""||isok==false)
+      {
+        error.style.visibility="visible";
+          return;
+      }
+        $.ajax(
+            {
+                type: "POST" ,
+                url: "/sendEmailServlet",
+                data: "email=" +email,
+                dataType: "text" ,
+                success: function (data)
+                {
+                    var success = document.getElementById("successinfer");
+                    success.style.visibility="visible";
+                }
+            }
+        );
+    }
+function register() {
+    var username=document.getElementById("Rusername").value;
+    var password=document.getElementById("Rpassword").value;
+    var email=document.getElementById("Remail").value;
+    var phonenumber=document.getElementById("Rphonenumber").value;
+    var password2=document.getElementById("Rpassword2").value;
+    var city=document.getElementById("Rcity").value;
+if(password!=password2)
+{
+    var error = document.getElementById("passworderror");
+    error.style.visibility="visible";
+    return;
+}
+    $.ajax(
+        {
+            type: "POST" ,
+            url: "/createAccountServlet",
+            data: "username=" +username+"&password=" +password+"&email="+email+"&phonenumber="+phonenumber+"&city="+city,
+            dataType: "text" ,
+            success: function (data)
+            {
+               //delayUrl();
+                window.location.href="testJsp.jsp";
+            }
+        }
+    );
+}
+
 
     function Login() {
         var username =document.getElementById("username").value;

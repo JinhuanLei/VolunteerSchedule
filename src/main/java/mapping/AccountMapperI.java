@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Update;
 import java.util.List;
 
 public interface AccountMapperI {
-    @Insert("insert into account(userid,username,password,type) values(#{userid},#{username}, #{password},#{type})")
+    @Insert("insert into account(userid,username,password,type,email,phonenumber,city) values(#{userid},#{username}, #{password},#{type},#{email},#{phonenumber},#{city})")
     public int add(account act);
 
 
