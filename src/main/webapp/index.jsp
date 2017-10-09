@@ -190,10 +190,12 @@ if(password!=password2)
                 dataType: "text" ,
                 success: function (data)
                 {
-                   if(data=="0")
+                   console.log(data);
+                    if(data=="0")
                    {
                        var error = document.getElementById("loginerror");
                        error.style.visibility="visible";
+                       return;
                    }
                     else
                    {

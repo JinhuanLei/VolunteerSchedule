@@ -27,12 +27,13 @@ public class loginServlet extends javax.servlet.http.HttpServlet {
         System.out.println(a.getPassword().equals(password));
         if(a!=null&&a.getPassword().equals(password))     //a.getPassword()==password     wrong??
            {
-               response.getWriter().write(1);
+               String x="1";
+               response.getWriter().write(x);
            }
            else
            {
-
-               response.getWriter().write(1);
+               String x="0";
+               response.getWriter().write(x);
                System.out.println("Please enter correct username and password");
 
            }

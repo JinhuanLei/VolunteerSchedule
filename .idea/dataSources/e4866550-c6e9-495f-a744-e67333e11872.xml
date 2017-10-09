@@ -5,53 +5,83 @@
     <schema id="2" parent="1" name="information_schema">
       <Current>1</Current>
     </schema>
-    <schema id="3" parent="1" name="kuyinge"/>
-    <schema id="4" parent="1" name="mysql"/>
-    <schema id="5" parent="1" name="performance_schema"/>
-    <schema id="6" parent="1" name="pharmacy"/>
-    <schema id="7" parent="1" name="sakila"/>
-    <schema id="8" parent="1" name="sys"/>
-    <schema id="9" parent="1" name="test"/>
-    <schema id="10" parent="1" name="ticketbooking"/>
-    <schema id="11" parent="1" name="websetshopping"/>
-    <schema id="12" parent="1" name="world"/>
-    <schema id="13" parent="1" name="volunteerschedule">
+    <schema id="3" parent="1" name="mysql"/>
+    <schema id="4" parent="1" name="performance_schema"/>
+    <schema id="5" parent="1" name="sys"/>
+    <schema id="6" parent="1" name="ticketbooking"/>
+    <schema id="7" parent="1" name="volunteerschedule">
       <Visible>1</Visible>
     </schema>
-    <table id="14" parent="13" name="account"/>
-    <column id="15" parent="14" name="userid">
+    <table id="8" parent="7" name="account"/>
+    <table id="9" parent="7" name="service"/>
+    <column id="10" parent="8" name="userid">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="16" parent="14" name="username">
+    <column id="11" parent="8" name="username">
       <Position>2</Position>
       <DataType>varchar(10)|0</DataType>
     </column>
-    <column id="17" parent="14" name="password">
+    <column id="12" parent="8" name="password">
       <Position>3</Position>
       <DataType>varchar(10)|0</DataType>
     </column>
-    <column id="18" parent="14" name="type">
+    <column id="13" parent="8" name="type">
       <Position>4</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <column id="19" parent="14" name="email">
+    <column id="14" parent="8" name="email">
       <Position>5</Position>
       <DataType>varchar(20)|0</DataType>
     </column>
-    <column id="20" parent="14" name="phonenumber">
+    <column id="15" parent="8" name="phonenumber">
       <Position>6</Position>
       <DataType>varchar(20)|0</DataType>
     </column>
-    <column id="21" parent="14" name="city">
+    <column id="16" parent="8" name="city">
       <Position>7</Position>
       <DataType>varchar(10)|0</DataType>
     </column>
-    <key id="22" parent="14" name="PRIMARY">
+    <key id="17" parent="8" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>userid</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="18" parent="9" name="serviceid">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="19" parent="9" name="servicename">
+      <Position>2</Position>
+      <DataType>varchar(20)|0</DataType>
+    </column>
+    <column id="20" parent="9" name="location">
+      <Position>3</Position>
+      <DataType>varchar(20)|0</DataType>
+    </column>
+    <column id="21" parent="9" name="servicetime">
+      <Position>4</Position>
+      <DataType>varchar(20)|0</DataType>
+    </column>
+    <column id="22" parent="9" name="contactpersonname">
+      <Position>5</Position>
+      <DataType>varchar(20)|0</DataType>
+    </column>
+    <column id="23" parent="9" name="contactinformation">
+      <Position>6</Position>
+      <DataType>varchar(20)|0</DataType>
+    </column>
+    <column id="24" parent="9" name="introduction">
+      <Position>7</Position>
+      <DataType>varchar(100)|0</DataType>
+    </column>
+    <key id="25" parent="9" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>serviceid</ColNames>
       <Primary>1</Primary>
     </key>
   </database-model>
