@@ -185,7 +185,7 @@ if(password!=password2)
         $.ajax(
             {
                 type: "POST" ,
-                url: "/loginServlet" ,
+                url: "/loginFunction" ,
                 data: "username=" +username+"&password=" +password ,
                 dataType: "text" ,
                 success: function (data)
