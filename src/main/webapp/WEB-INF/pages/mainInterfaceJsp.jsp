@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <%--<link rel="icon" href="../../favicon.ico">--%>
 
-    <title>Jumbotron Template for Bootstrap</title>
+    <title>Volunteer</title>
 
     <!-- Bootstrap core CSS -->
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
@@ -17,13 +17,15 @@
 
 
     <!-- Custom styles for this template -->
-    <link href="css/jumbotron.css" rel="stylesheet">
+    <link href="../../css/jumbotron.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
     <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+
     <![endif]-->
+
 </head>
 
 <body>
@@ -37,16 +39,20 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Project name</a>
+            <a class="navbar-brand" href="#">Volunteer Work Scheduling</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <form class="navbar-form navbar-right">
+                <!--
+                    作者：576253806@qq.com
+                    时间：2017-10-11
+                    描述：
                 <div class="form-group">
-                    <input type="text" placeholder="Email" class="form-control">
-                </div>
-                <div class="form-group">
-                    <input type="password" placeholder="Password" class="form-control">
-                </div>
+                     <input type="text" placeholder="Email" class="form-control">
+                 </div>
+                 <div class="form-group">
+                     <input type="password" placeholder="Password" class="form-control">
+                 </div> -->
                 <button type="submit" class="btn btn-success">Sign in</button>
             </form>
         </div><!--/.navbar-collapse -->
@@ -54,10 +60,10 @@
 </nav>
 
 <!-- Main jumbotron for a primary marketing message or call to action -->
-<div class="jumbotron">
+<div class="jumbotron" style="background-image: url(../../images/timg.jpg);">
     <div class="container">
-        <h1>Hello, world!</h1>
-        <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+        <h1>WELCOME!</h1>
+        <p>Introduction of website</p>
         <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
     </div>
 </div>
@@ -65,18 +71,18 @@
 <div class="container">
     <!-- Example row of columns -->
     <div class="row">
-        <div class="col-md-4">
-            <h2>Heading</h2>
+        <div class="col-md-4" id="service1">
+            <h2>Activity 1</h2>
             <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
             <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
         </div>
         <div class="col-md-4">
-            <h2>Heading</h2>
+            <h2>Activity 2</h2>
             <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
             <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
         </div>
         <div class="col-md-4">
-            <h2>Heading</h2>
+            <h2>Activity 3</h2>
             <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
             <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
         </div>
@@ -84,17 +90,31 @@
 
     <hr>
 
-    <footer>
-        <p>&copy; 2016 Company, Inc.</p>
-    </footer>
-</div> <!-- /container -->
 
+</div> <!-- /container -->
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+    $(function() {
+        $.ajax(
+            {
+                type: "POST" ,
+                url: "/initialVolunteerData" ,
+              success: function (data)
+                {
+                      var eleH=$("#service1 h2");
+                    var eleP=$("#service1 p");
+                    console.log(data.servicename);
+                      eleH.text(data.servicename);
+                      eleP[0].innerHTML=data.introduction;
+                         }
+    })});
+</script>
 
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
-<%--<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>--%>
+
 <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 </body>

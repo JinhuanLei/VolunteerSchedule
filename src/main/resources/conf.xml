@@ -27,6 +27,7 @@
         <!--<mapper resource="me/gacl/mapping/userMapper.xml"/>-->
         <!-- 注册UserMapper映射接口-->
         <mapper class="mapping.AccountMapperI"/>
+        <mapper class="mapping.ServiceMapperI"/>
     </mappers>
 
 </configuration>

@@ -8,6 +8,15 @@ public class service {
     private String contactpersionname;
     private String contactinformation;
     private String introduction;
+    private int peoplenum;
+
+    public int getPeoplenum() {
+        return peoplenum;
+    }
+
+    public void setPeoplenum(int peoplenum) {
+        this.peoplenum = peoplenum;
+    }
 
     public int getServiceid() {
         return serviceid;
@@ -63,5 +72,10 @@ public class service {
 
     public void setIntroduction(String introduction) {
         this.introduction = introduction;
+    }
+
+    @Override
+    public String toString() {
+        return "id"+serviceid+"name"+servicename+"time"+servicetime;
     }
 }

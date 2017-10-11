@@ -9,6 +9,8 @@ public interface ServiceMapperI {
     public int add(service ser);
 
 
+    @Select("select * from service where serviceid=#{id}")
+public service getServiceByID(int id);
     //    //使用@Update注解指明update方法要执行的SQL
 //    @Update("update users set name=#{name},age=#{age} where id=#{id}")
 //    public int update(account user);

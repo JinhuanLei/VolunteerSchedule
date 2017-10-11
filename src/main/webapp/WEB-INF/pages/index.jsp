@@ -203,7 +203,8 @@ if(password!=password2)
                     else
                    {
                        console.log("data is %s",data);
-                       window.location.href="https://www.google.com.hk";
+//
+                        window.location.href="/changeToMainPage";
                    }
                 }
             }
