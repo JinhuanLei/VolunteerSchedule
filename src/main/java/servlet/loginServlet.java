@@ -37,7 +37,7 @@ public class loginServlet extends javax.servlet.http.HttpServlet {
                System.out.println("Please enter correct username and password");
 
            }
-//
+
     }
 
     protected void doGet(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws javax.servlet.ServletException, java.io.IOException {

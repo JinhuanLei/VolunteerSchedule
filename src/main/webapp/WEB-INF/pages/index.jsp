@@ -23,7 +23,7 @@
             font-size:11px;
             font-style:italic;
             display:block;
-            margin:-10px 30px 5px 185px;
+            margin:-10px 30px 5px 178px;
         }
     </style>
 
@@ -126,7 +126,9 @@
     function forgotpassword() {
       var email=document.getElementById("Femail").value;
         var error = document.getElementById("emailerror");
+        var success = document.getElementById("successinfer");
         error.style.visibility="hidden";
+        success.style.visibility="hidden";
         var reg = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/;
         var isok= reg.test(email);
         console.log(isok);
@@ -138,12 +140,12 @@
         $.ajax(
             {
                 type: "POST" ,
-                url: "/sendEmailServlet",
+                url: "/sendEmailFunction",
                 data: "email=" +email,
                 dataType: "text" ,
                 success: function (data)
                 {
-                    var success = document.getElementById("successinfer");
+
                     success.style.visibility="visible";
                 }
             }
@@ -165,13 +167,14 @@ if(password!=password2)
     $.ajax(
         {
             type: "POST" ,
-            url: "/createAccountServlet",
+            url: "/createAccountFunction",
             data: "username=" +username+"&password=" +password+"&email="+email+"&phonenumber="+phonenumber+"&city="+city,
             dataType: "text" ,
             success: function (data)
             {
                //delayUrl();
-                window.location.href="testJsp.jsp";
+//                window.location.href="testJsp.jsp";
+                window.location.href="https://www.google.com.hk";
             }
         }
     );
