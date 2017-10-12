@@ -4,51 +4,70 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+
     <meta name="description" content="">
     <meta name="author" content="">
-    <%--<link rel="icon" href="../../favicon.ico">--%>
 
-    <title>Dashboard Template for Bootstrap</title>
 
-    <!-- Bootstrap core CSS -->
+    <title>Administrator Interface</title>
+
+
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 
 
+    <script type="text/javascript">
+        function deleteFunction()
+        {
+            var del=prompt("AccountID");
 
-    <!-- Custom styles for this template -->
-    <link href="../../css/dashboard.css" rel="stylesheet">
+
+        }
 
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-    <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+
+        function addPMFunction()
+        {
+            var add=prompt("AccountID");
+
+
+
+        }
+        function changeaTOVolunteer() {
+            window.location.href="/getVolJsp";
+        }
+
+
+    </script>
+
+
+    <link href="css/dashboard.css" rel="stylesheet">
+
+
 </head>
 
 <body>
 
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
-        <div class="navbar-header">
+        <div class="bar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Project name</a>
+            <a class="navbar-brand" href="#">Administrator</a>
+            <a class="navbar-brand" href="#" style="font-size: small;">HomePage</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Dashboard</a></li>
-                <li><a href="#">Settings</a></li>
-                <li><a href="#">Profile</a></li>
-                <li><a href="#">Help</a></li>
-            </ul>
+
             <form class="navbar-form navbar-right">
-                <input type="text" class="form-control" placeholder="Search...">
+                <!--
+                	作者：576253806@qq.com
+                	时间：2017-10-11
+                	描述：
+                <input type="text" class="form-control" placeholder="Search...">-->
+                <button type="button" class="btn btn-default navbar-btn">Logout</button>
             </form>
         </div>
     </div>
@@ -58,63 +77,56 @@
     <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
-                <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
-                <li><a href="#">Reports</a></li>
-                <li><a href="#">Analytics</a></li>
-                <li><a href="#">Export</a></li>
+                <li class="active"><a href="/getManageJsp">Overview <span class="sr-only">(current)</span></a></li>
+                <li class="visible-ad-block"><a href="/getManageJsp">Account</a></li>
+                <li class="hidden-ad"><a href="/getReportJsp">Report</a></li>
+
             </ul>
-            <ul class="nav nav-sidebar">
-                <li class="active"><a href="">Nav item</a></li>
-                <li><a href="">Nav item again</a></li>
-                <li><a href="">One more nav</a></li>
-                <li><a href="">Another nav item</a></li>
-                <li><a href="">More navigation</a></li>
-            </ul>
-            <ul class="nav nav-sidebar">
-                <li class="active"><a href="">Nav item again</a></li>
-                <li><a href="">One more nav</a></li>
-                <li><a href="">Another nav item</a></li>
-            </ul>
+            <!--
+                作者：576253806@qq.com
+                时间：2017-10-11
+                描述：
+             <ul class="nav nav-sidebar">
+                  <li class="active"><a href="">Nav item</a></li>
+                  <li><a href="">Nav item again</a></li>
+                  <li><a href="">One more nav</a></li>
+                  <li><a href="">Another nav item</a></li>
+                  <li><a href="">More navigation</a></li>
+              </ul>
+              <ul class="nav nav-sidebar">
+                  <li class="active"><a href="">Nav item again</a></li>
+                  <li><a href="">One more nav</a></li>
+                  <li><a href="">Another nav item</a></li>
+              </ul> -->
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <h1 class="page-header">Dashboard</h1>
 
-            <div class="row placeholders">
-                <div class="col-xs-6 col-sm-3 placeholder">
-                    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
-                    <h4>Label</h4>
-                    <span class="text-muted">Something else</span>
-                </div>
-                <div class="col-xs-6 col-sm-3 placeholder">
-                    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
-                    <h4>Label</h4>
-                    <span class="text-muted">Something else</span>
-                </div>
-                <div class="col-xs-6 col-sm-3 placeholder">
-                    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
-                    <h4>Label</h4>
-                    <span class="text-muted">Something else</span>
-                </div>
-                <div class="col-xs-6 col-sm-3 placeholder">
-                    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
-                    <h4>Label</h4>
-                    <span class="text-muted">Something else</span>
-                </div>
-            </div>
 
-            <h2 class="sub-header">Section title</h2>
+            <h1 class="sub-header">Account Information
+                <button class="btn btn-default" aria-label="Left Align" title="Add a new Volunteer" onclick="changeaTOVolunteer()">
+                    <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></a>
+                </button>
+                <button type="submit" class="btn btn-default" aria-label="Left Align" title="Add a Project Manager" onclick="addPMFunction()">
+                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                </button>
+                <button type="submit" class="btn btn-default" aria-label="Left Align" title="Delete an account" onclick="deleteFunction()">
+                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                </button>
+
+            </h1>
+
             <div class="table-responsive">
-                <table class="table table-striped">
+                <div><table class="table table-striped" >
                     <thead>
                     <tr>
-                        <th>#</th>
-                        <th>Header</th>
-                        <th>Header</th>
-                        <th>Header</th>
-                        <th>Header</th>
+                        <th>AccountID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>City</th>
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="accountTable">
                     <tr>
                         <td>1,001</td>
                         <td>Lorem</td>
@@ -122,121 +134,81 @@
                         <td>dolor</td>
                         <td>sit</td>
                     </tr>
-                    <tr>
-                        <td>1,002</td>
-                        <td>amet</td>
-                        <td>consectetur</td>
-                        <td>adipiscing</td>
-                        <td>elit</td>
-                    </tr>
-                    <tr>
-                        <td>1,003</td>
-                        <td>Integer</td>
-                        <td>nec</td>
-                        <td>odio</td>
-                        <td>Praesent</td>
-                    </tr>
-                    <tr>
-                        <td>1,003</td>
-                        <td>libero</td>
-                        <td>Sed</td>
-                        <td>cursus</td>
-                        <td>ante</td>
-                    </tr>
-                    <tr>
-                        <td>1,004</td>
-                        <td>dapibus</td>
-                        <td>diam</td>
-                        <td>Sed</td>
-                        <td>nisi</td>
-                    </tr>
-                    <tr>
-                        <td>1,005</td>
-                        <td>Nulla</td>
-                        <td>quis</td>
-                        <td>sem</td>
-                        <td>at</td>
-                    </tr>
-                    <tr>
-                        <td>1,006</td>
-                        <td>nibh</td>
-                        <td>elementum</td>
-                        <td>imperdiet</td>
-                        <td>Duis</td>
-                    </tr>
-                    <tr>
-                        <td>1,007</td>
-                        <td>sagittis</td>
-                        <td>ipsum</td>
-                        <td>Praesent</td>
-                        <td>mauris</td>
-                    </tr>
-                    <tr>
-                        <td>1,008</td>
-                        <td>Fusce</td>
-                        <td>nec</td>
-                        <td>tellus</td>
-                        <td>sed</td>
-                    </tr>
-                    <tr>
-                        <td>1,009</td>
-                        <td>augue</td>
-                        <td>semper</td>
-                        <td>porta</td>
-                        <td>Mauris</td>
-                    </tr>
-                    <tr>
-                        <td>1,010</td>
-                        <td>massa</td>
-                        <td>Vestibulum</td>
-                        <td>lacinia</td>
-                        <td>arcu</td>
-                    </tr>
-                    <tr>
-                        <td>1,011</td>
-                        <td>eget</td>
-                        <td>nulla</td>
-                        <td>Class</td>
-                        <td>aptent</td>
-                    </tr>
-                    <tr>
-                        <td>1,012</td>
-                        <td>taciti</td>
-                        <td>sociosqu</td>
-                        <td>ad</td>
-                        <td>litora</td>
-                    </tr>
-                    <tr>
-                        <td>1,013</td>
-                        <td>torquent</td>
-                        <td>per</td>
-                        <td>conubia</td>
-                        <td>nostra</td>
-                    </tr>
-                    <tr>
-                        <td>1,014</td>
-                        <td>per</td>
-                        <td>inceptos</td>
-                        <td>himenaeos</td>
-                        <td>Curabitur</td>
-                    </tr>
-                    <tr>
-                        <td>1,015</td>
-                        <td>sodales</td>
-                        <td>ligula</td>
-                        <td>in</td>
-                        <td>libero</td>
-                    </tr>
+
                     </tbody>
-                </table>
+                </table></div>
             </div>
         </div>
     </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+    $(function() {
+        $.ajax(
+            {
+                type: "POST",
+                url: "/getAllAccount",
+                success: function (data) {
 
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
+                    var count = Object.keys(data).length
+                    for(var x=0;x<count;x++)
+                    {
+                        var row=document.createElement("tr"); //创建行
+
+                        for(var y=0;y<5;y++)
+                        {
+                            if(y==0)
+                            {
+                                var td1=document.createElement("td"); //创建单元格
+
+                                td1.appendChild(document.createTextNode(data[x].userid)); //为单元格添加内容
+
+                                row.appendChild(td1); //将单元格添加到行内
+                            }
+                            else if(y==1)
+                            {
+                                var td1=document.createElement("td"); //创建单元格
+
+                                td1.appendChild(document.createTextNode(data[x].username)); //为单元格添加内容
+
+                                row.appendChild(td1); //将单元格添加到行内
+                            }
+                            else if(y==2)
+                            {
+                                var td1=document.createElement("td"); //创建单元格
+
+                                td1.appendChild(document.createTextNode(data[x].email)); //为单元格添加内容
+
+                                row.appendChild(td1); //将单元格添加到行内
+                            }
+                                else if(y==3)
+                            {
+                                var td1=document.createElement("td"); //创建单元格
+
+                                td1.appendChild(document.createTextNode(data[x].phonenumber)); //为单元格添加内容
+
+                                row.appendChild(td1); //将单元格添加到行内
+                            }
+                            else if(y==4)
+                            {
+                                var td1=document.createElement("td"); //创建单元格
+
+                                td1.appendChild(document.createTextNode(data[x].city)); //为单元格添加内容
+
+                                row.appendChild(td1); //将单元格添加到行内
+                            }
+
+                        }
+
+
+
+                        document.getElementById("accountTable").append(row); //将行添加到<tbody>中
+                    }
+
+                }
+            })
+        });
+</script>
 <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
 
 <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>

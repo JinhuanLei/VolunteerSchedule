@@ -57,7 +57,7 @@
             </ul>
                </div>
             <div id="submitform">
-            <form class="navbar-form navbar-right" id="loginButton">
+            <form class="navbar-form navbar-right" id="loginButton" action="/maintoindex">
                 <!--
                     作者：576253806@qq.com
                     时间：2017-10-11
@@ -68,7 +68,7 @@
                  <div class="form-group">
                      <input type="password" placeholder="Password" class="form-control">
                  </div> -->
-                <button type="submit" class="btn btn-success">Sign in</button>
+                <button type="submit" class="btn btn-success" >Sign in</button>
 
             </form>
             </div>
@@ -101,7 +101,7 @@
             </div>
         </div>
 
-        <div class="col-md-4 panel-info">
+        <div class="col-md-4 panel-info" id="service2">
             <div class="panel-heading">
             <h2>Activity 2</h2>
             </div>
@@ -110,7 +110,7 @@
             <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
             </div>
             </div>
-        <div class="col-md-4  panel-success">
+        <div class="col-md-4  panel-success" id="service3">
             <div class="panel-heading">
             <h2>Activity 3</h2>
             </div>
@@ -135,11 +135,21 @@
                 url: "/initialVolunteerData" ,
               success: function (data)
                 {
-                      var eleH=$("#service1 h2");
-                    var eleP=$("#service1 p");
-                    console.log(data.servicename);
-                      eleH.text(data.servicename);
-                      eleP[0].innerHTML=data.introduction;
+              alert(data[0].servicename);
+
+
+                     for(var x=0; x<3;x++)
+                     {
+                         var eleH=$("#service"+(x+1)+" h2");
+                         var eleP=$("#service"+(x+1)+" p");
+                         eleH.text(data[x].servicename);
+                         eleP[0].innerHTML=data[x].introduction;
+                     }
+//                    var eleH=$("#service1 h2");
+//                    var eleP=$("#service1 p");
+//                    console.log(data.servicename);
+//                      eleH.text(data[x].servicename);
+//                      eleP[0].innerHTML=data.introduction;
                          }
     })
 
@@ -163,6 +173,13 @@
         }
 
     });
+
+
+//    function loginFunction()
+//    {
+//        alert("xxx");
+//        window.location.href="/maintoindex";
+//    }
 </script>
 
 <!-- Bootstrap core JavaScript

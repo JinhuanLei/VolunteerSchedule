@@ -28,7 +28,8 @@ public class LoginController {
     public String index()
     {
         System.out.println("start mvc");
-        return "index";
+//        return "index";
+        return "mainInterfaceJsp";
 //        return "/index.jsp";
     }
 
@@ -41,7 +42,7 @@ public class LoginController {
 
     }
     @RequestMapping(value="/sendEmailFunction")
-      public void SendEmail(String email,PrintWriter pw)
+    public void SendEmail(String email,PrintWriter pw)
     {
         try {
             sendEmail(email);
@@ -52,8 +53,22 @@ public class LoginController {
         }
 
 
-            pw.write("");
+        pw.write("");
     }
+
+    @RequestMapping(value="/maintoindex")
+    public ModelAndView MaintoIndex()
+    {
+      return new ModelAndView("index");
+    }
+
+    @RequestMapping(value="/indexToManage" ,method=RequestMethod.GET)
+    public ModelAndView indextoManage()
+    {
+        return new ModelAndView("inferManagementJsp");
+
+    }
+
     @RequestMapping(value = "/createAccountFunction")
     public void CreatAccount(String username,String password,String email,String phonenumber,String city,PrintWriter pw)
     {
@@ -90,14 +105,23 @@ public class LoginController {
         System.out.println(a.getPassword().equals(password));
         if(a!=null&&a.getPassword().equals(password))     //a.getPassword()==password     wrong??
         {
-            String x="1";
-            hs.setAttribute("username",username);
-            hs.setAttribute("usertype",a.getType());
-            pw.write(x);
+            if(a.getType()==0)
+            {
+                String x = "0";
+                hs.setAttribute("username", username);
+                hs.setAttribute("usertype", a.getType());
+                pw.write(x);
+            }
+            else {
+                String x = "1";
+                hs.setAttribute("username", username);
+                hs.setAttribute("usertype", a.getType());
+                pw.write(x);
+            }
         }
         else
         {
-            String x="0";
+            String x="-1";
             pw.write(x);
             System.out.println("Please enter correct username and password");
 

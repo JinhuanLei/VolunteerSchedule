@@ -4,8 +4,10 @@ import domain.service;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 
+import java.util.List;
+
 public interface ServiceMapperI {
-    @Insert("insert into service(serviceid,servicename,location,servicetime,contactpersonname,contactinformation,introduction) values(#{serviceid},#{servicename}, #{location},#{servicetime},#{contactpersonname},#{contactinformation},#{introdution})")
+    @Insert("insert into service(serviceid,servicename,location,servicetime,contactpersonname,contactinformation,introduction,peoplenum) values(#{serviceid},#{servicename}, #{location},#{servicetime},#{contactpersonname},#{contactinformation},#{introduction},#{peoplenum})")
     public int add(service ser);
 
 
@@ -16,7 +18,7 @@ public service getServiceByID(int id);
 //    public int update(account user);
 //    //使用@Select注解指明getById方法要执行的SQL
     @Select("select * from service")
-    public service[] getAllServices();
+    public List<service> getAllServices();
 
 
 

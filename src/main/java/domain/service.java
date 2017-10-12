@@ -5,7 +5,7 @@ public class service {
     private String servicename;
     private  String location;
     private String servicetime;
-    private String contactpersionname;
+    private String contactpersonname;
     private String contactinformation;
     private String introduction;
     private int peoplenum;
@@ -50,12 +50,12 @@ public class service {
         this.servicetime = servicetime;
     }
 
-    public String getContactpersionname() {
-        return contactpersionname;
+    public String getContactpersonname() {
+        return contactpersonname;
     }
 
-    public void setContactpersionname(String contactpersionname) {
-        this.contactpersionname = contactpersionname;
+    public void setContactpersonname(String contactpersionname) {
+        this.contactpersonname = contactpersionname;
     }
 
     public String getContactinformation() {

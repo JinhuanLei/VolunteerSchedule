@@ -3,7 +3,6 @@ package mapping;
 import domain.account;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 
@@ -19,6 +18,8 @@ public interface AccountMapperI {
     @Select("select * from account where username=#{username}")
     public account getByUsername(String username);
 
+    @Select("select * from account")
+    public List<account> getAllAccounts();
 //    @Select("select * from seatsreserve where date=#{date}")
 //    public List<account> getByDate(String date);
     //使用@Select注解指明getAll方法要执行的SQL

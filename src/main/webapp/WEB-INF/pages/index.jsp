@@ -194,16 +194,21 @@ if(password!=password2)
                 success: function (data)
                 {
                    console.log(data);
-                    if(data=="0")
+                    if(data=="-1")
                    {
                        var error = document.getElementById("loginerror");
                        error.style.visibility="visible";
                        return;
                    }
+                    else if(data=="0")
+                    {
+                        window.location.href="/indexToManage";
+                    }
                     else
                    {
                        console.log("data is %s",data);
-//
+
+
                         window.location.href="/changeToMainPage";
                    }
                 }
