@@ -135,7 +135,7 @@
                 url: "/initialVolunteerData" ,
               success: function (data)
                 {
-              alert(data[0].servicename);
+//              alert(data[0].servicename);
 
 
                      for(var x=0; x<3;x++)
