@@ -42,7 +42,22 @@
             <a class="navbar-brand" href="#">Volunteer Work Scheduling</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
-            <form class="navbar-form navbar-right">
+               <div id="downbar">
+            <ul class="nav navbar-nav navbar-right" >
+                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">User <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a id="action-1" href="#">Manager</a></li>
+
+                        <li><a href="#">Setting</a></li>
+                        <li class="divider"></li>
+                        <li><a href="/logoutFuntion">Log Out</a></li>
+
+                    </ul>
+                </li>
+            </ul>
+               </div>
+            <div id="submitform">
+            <form class="navbar-form navbar-right" id="loginButton">
                 <!--
                     作者：576253806@qq.com
                     时间：2017-10-11
@@ -54,8 +69,11 @@
                      <input type="password" placeholder="Password" class="form-control">
                  </div> -->
                 <button type="submit" class="btn btn-success">Sign in</button>
+
             </form>
+            </div>
         </div><!--/.navbar-collapse -->
+
     </div>
 </nav>
 
@@ -71,20 +89,35 @@
 <div class="container">
     <!-- Example row of columns -->
     <div class="row">
-        <div class="col-md-4" id="service1">
+        <div class="col-md-4   panel-warning" id="service1">
+
+            <div class="panel-heading">
             <h2>Activity 1</h2>
+            </div>
+            <div class="panel-body">
+
             <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
             <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+            </div>
         </div>
-        <div class="col-md-4">
+
+        <div class="col-md-4 panel-info">
+            <div class="panel-heading">
             <h2>Activity 2</h2>
+            </div>
+            <div class="panel-body">
             <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
             <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-        </div>
-        <div class="col-md-4">
+            </div>
+            </div>
+        <div class="col-md-4  panel-success">
+            <div class="panel-heading">
             <h2>Activity 3</h2>
+            </div>
+            <div class="panel-body">
             <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
             <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+        </div>
         </div>
     </div>
 
@@ -95,6 +128,7 @@
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script type="text/javascript">
     $(function() {
+        var state;
         $.ajax(
             {
                 type: "POST" ,
@@ -107,7 +141,28 @@
                       eleH.text(data.servicename);
                       eleP[0].innerHTML=data.introduction;
                          }
-    })});
+    })
+
+        var username="<%=session.getAttribute("username")%>";
+        var type="<%=session.getAttribute("usertype")%>";   //判断是否是admin 管理员 或user
+        var navbar=document.getElementById("downbar");
+        var loginbutton=document.getElementById("submitform");
+        console.log("username"+username+(username!="null"));
+//        if(username!="")   //exist
+            if (username!="null")
+        {
+            navbar.style.display="block";
+            loginbutton.style.display="none";
+
+        }
+        else
+        {
+
+            navbar.style.display="none";
+            loginbutton.style.display="block";
+        }
+
+    });
 </script>
 
 <!-- Bootstrap core JavaScript

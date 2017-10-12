@@ -13,6 +13,7 @@ import util.MyBatisUtil;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpSession;
 import java.io.PrintWriter;
 import java.security.GeneralSecurityException;
 import java.util.Properties;
@@ -69,10 +70,15 @@ public class LoginController {
         pw.write("");
         sqlSession.close();
     }
-
+    @RequestMapping(value = "/logoutFuntion")
+    public String logout(HttpSession hs)
+    {
+        hs.invalidate();
+        return "mainInterfaceJsp";
+    }
 
     @RequestMapping(value = "/loginFunction")
-    public void login(String username,String password,PrintWriter pw)
+    public void login(HttpSession hs,String username, String password, PrintWriter pw)
     {
        // System.out.println("submit"+username+password);
         SqlSession sqlSession = MyBatisUtil.getSqlSession(true);
@@ -85,6 +91,8 @@ public class LoginController {
         if(a!=null&&a.getPassword().equals(password))     //a.getPassword()==password     wrong??
         {
             String x="1";
+            hs.setAttribute("username",username);
+            hs.setAttribute("usertype",a.getType());
             pw.write(x);
         }
         else
