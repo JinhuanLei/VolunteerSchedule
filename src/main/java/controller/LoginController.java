@@ -189,7 +189,7 @@ public class LoginController {
         message.setSubject("hello");
         // 2.4 正文
         String str = "welocome  to our group <br/>" +
-                "FUCK YOU<br/>";
+                "nice to meet you<br/>";
         message.setContent(str, "text/html;charset=UTF-8");
         //3、发送
         Transport.send(message);

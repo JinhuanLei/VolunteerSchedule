@@ -46,7 +46,7 @@
             <ul class="nav navbar-nav navbar-right" >
                 <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">User <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a id="action-1" href="#">Manager</a></li>
+                        <li><a id="action-1" href="/MainToManage">Manager</a></li>
 
                         <li><a href="#">Setting</a></li>
                         <li class="divider"></li>

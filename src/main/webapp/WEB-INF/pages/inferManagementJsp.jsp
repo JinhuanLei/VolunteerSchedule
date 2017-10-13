@@ -57,7 +57,7 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="#">Administrator</a>
-            <a class="navbar-brand" href="#" style="font-size: small;">HomePage</a>
+            <a class="navbar-brand"  style="font-size: small;" href="/ManageToMain">HomePage</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
 

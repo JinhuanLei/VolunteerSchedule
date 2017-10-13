@@ -26,6 +26,18 @@ public class ManageController {
 
     }
 
+    @RequestMapping(value="/ManageToMain")
+    public ModelAndView ManageToMain()
+    {
+        return new ModelAndView("mainInterfaceJsp");
+    }
+
+    @RequestMapping(value="/MainToManage")
+    public ModelAndView MainToManage()
+    {
+        return new ModelAndView("inferManagementJsp");
+    }
+
     @RequestMapping(value = "/AddNewVolunteer")
 
     public void AddNewVolunteer(String username, String password, PrintWriter pw) {

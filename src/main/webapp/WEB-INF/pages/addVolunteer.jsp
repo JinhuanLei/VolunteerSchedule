@@ -43,7 +43,7 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="#">Administrator</a>
-            <a class="navbar-brand" href="#" style="font-size: small;">HomePage</a>
+            <a class="navbar-brand" href="/ManageToMain" style="font-size: small;">HomePage</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
 
