@@ -46,7 +46,7 @@
             <ul class="nav navbar-nav navbar-right" >
                 <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">User <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a id="action-1" href="/MainToManage">Manager</a></li>
+                        <li id="manageli"><a id="action-1" href="/MainToManage" >Manage</a></li>
 
                         <li><a href="#">Setting</a></li>
                         <li class="divider"></li>
@@ -125,7 +125,8 @@
 
 
 </div> <!-- /container -->
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
 <script type="text/javascript">
     $(function() {
         var state;
@@ -151,18 +152,27 @@
 //                      eleH.text(data[x].servicename);
 //                      eleP[0].innerHTML=data.introduction;
                          }
+
+
+
     })
 
         var username="<%=session.getAttribute("username")%>";
         var type="<%=session.getAttribute("usertype")%>";   //判断是否是admin 管理员 或user
         var navbar=document.getElementById("downbar");
         var loginbutton=document.getElementById("submitform");
+        var manageAutho=document.getElementById("manageli");   //Manage Discussion
         console.log("username"+username+(username!="null"));
 //        if(username!="")   //exist
             if (username!="null")
         {
             navbar.style.display="block";
             loginbutton.style.display="none";
+            console.log(type==2);
+            if(type==2)
+            {
+                manageAutho.style.display="none";
+            }
 
         }
         else

@@ -13,7 +13,36 @@
 
 
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="build/toastr.css" rel="stylesheet" />
+    <!-- Metis core stylesheet -->
+    <link rel="stylesheet" href="assets/css/main.css">
 
+    <!-- metisMenu stylesheet -->
+    <link rel="stylesheet" href="assets/lib/metismenu/metisMenu.css">
+    <%--<link rel="stylesheet" href="assets/lib/onoffcanvas/onoffcanvas.css">--%>
+
+    <%--<!-- animate.css stylesheet -->--%>
+    <%--<link rel="stylesheet" href="assets/lib/animate.css/animate.css">--%>
+
+    <%--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/css/dataTables.bootstrap.min.css">--%>
+    <style>
+        @font-face {
+            font-family: 'iconfont';
+            /* project id 444600 */
+            src: url('//at.alicdn.com/t/font_444600_mot3jg1520t9ms4i.eot');
+            src: url('//at.alicdn.com/t/font_444600_mot3jg1520t9ms4i.eot?#iefix') format('embedded-opentype'), url('//at.alicdn.com/t/font_444600_mot3jg1520t9ms4i.woff') format('woff'), url('//at.alicdn.com/t/font_444600_mot3jg1520t9ms4i.ttf') format('truetype'), url('//at.alicdn.com/t/font_444600_mot3jg1520t9ms4i.svg#iconfont') format('svg');
+        }
+
+        .iconfont {
+            font-family: "iconfont";
+            font-size: 16px;
+            font-style: normal;
+            -webkit-font-smoothing: antialiased;
+            -webkit-text-stroke-width: 0.2px;
+            -moz-osx-font-smoothing: grayscale;
+            padding-left: 0
+        }
+    </style>
 
     <script type="text/javascript">
         function deleteFunction()
@@ -41,7 +70,17 @@
 
 
     <link href="css/dashboard.css" rel="stylesheet">
-
+    <script>
+        less = {
+            env: "development",
+            relativeUrls: false,
+            rootpath: "/assets/"
+        };
+    </script>
+    <link rel="stylesheet" href="assets/css/style-switcher.css">
+    <link rel="stylesheet/less" type="text/css" href="assets/less/theme.less">
+    <link href="build/toastr.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.7.1/less.js"></script>
 
 </head>
 
@@ -57,7 +96,7 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="#">Administrator</a>
-            <a class="navbar-brand"  style="font-size: small;" href="/ManageToMain">HomePage</a>
+
         </div>
         <div id="navbar" class="navbar-collapse collapse">
 
@@ -82,22 +121,7 @@
                 <li class="hidden-ad"><a href="/getReportJsp">Report</a></li>
 
             </ul>
-            <!--
-                作者：576253806@qq.com
-                时间：2017-10-11
-                描述：
-             <ul class="nav nav-sidebar">
-                  <li class="active"><a href="">Nav item</a></li>
-                  <li><a href="">Nav item again</a></li>
-                  <li><a href="">One more nav</a></li>
-                  <li><a href="">Another nav item</a></li>
-                  <li><a href="">More navigation</a></li>
-              </ul>
-              <ul class="nav nav-sidebar">
-                  <li class="active"><a href="">Nav item again</a></li>
-                  <li><a href="">One more nav</a></li>
-                  <li><a href="">Another nav item</a></li>
-              </ul> -->
+
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
@@ -115,33 +139,104 @@
 
             </h1>
 
-            <div class="table-responsive">
-                <div><table class="table table-striped" >
-                    <thead>
-                    <tr>
-                        <th>AccountID</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Phone</th>
-                        <th>City</th>
-                    </tr>
-                    </thead>
-                    <tbody id="accountTable">
-                    <tr>
-                        <td>1,001</td>
-                        <td>Lorem</td>
-                        <td>ipsum</td>
-                        <td>dolor</td>
-                        <td>sit</td>
-                    </tr>
+            <div id="content">
+                <div class="outer">
+                    <div class="inner bg-light lter">
+                        <!--Begin Datatables-->
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="box">
+                                    <header>
+                                        <div class="icons"><i class="fa fa-table"></i></div>
+                                        <h5>Discussion Table</h5>
+                                    </header>
+                                    <div id="collapse4" class="body">
+                                        <table id="dataTable" class="table table-bordered table-condensed table-hover table-striped">
+                                            <thead>
+                                            <tr>
+                                                <th><i class="iconfont">&#xe607;</i></th>
+                                                <th>UserID</th>
+                                                <th>Name</th>
+                                                <th>Usertype</th>
+                                                <th>Email</th>
+                                                <th>City</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody id="accountTable">
+                                            <%--<tr>--%>
+                                                <%--<td align="center">--%>
+                                                    <%--<a class="btn btn-default"><i class="iconfont">&#xe624;</i></a>--%>
+                                                    <%--<a class="btn btn-danger"><i class="iconfont">&#xe600;</i></a>--%>
+                                                <%--</td>--%>
+                                                <%--<td>1</td>--%>
+                                                <%--<td class="hidden-xs">John Doe</td>--%>
+                                                <%--<td>Administrator</td>--%>
+                                                <%--<td>12691613@qq.com</td>--%>
+                                                <%--<td>La Crosse</td>--%>
+                                            <%--</tr>--%>
+                                            </tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
 
-                    </tbody>
-                </table></div>
+
+                            </div>
+                        </div>
+                        <!-- /.row -->
+
+                    </div>
+                    <!-- /#content -->
+
+                    <!-- /#right -->
+                </div>
+                <!-- /#wrap -->
             </div>
         </div>
     </div>
 </div>
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="assets/lib/jquery/jquery.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/jquery.dataTables.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/dataTables.bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.26.6/js/jquery.tablesorter.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+
+<!--Bootstrap -->
+<script src="assets/lib/bootstrap/js/bootstrap.js"></script>
+<!-- MetisMenu -->
+<script src="assets/lib/metismenu/metisMenu.js"></script>
+<!-- onoffcanvas -->
+<script src="assets/lib/onoffcanvas/onoffcanvas.js"></script>
+<!-- Screenfull -->
+<script src="assets/lib/screenfull/screenfull.js"></script>
+
+<!-- Metis core scripts -->
+<script src="assets/js/core.js"></script>
+<!-- Metis demo scripts -->
+<script src="assets/js/app.js"></script>
+<script src="build/toastr.min.js"></script>
+<script>
+    toastr.options.positionClass = 'toast-top-center';
+
+    function deleteAccount(thisObj,idcount)
+    {
+        var discussionname=document.getElementById("discussionname"+idcount).innerText;
+        $.ajax(
+            {
+                type: "POST" ,
+                url: "/DeleteAccount" ,
+                data: "discussionname=" +discussionname,
+                success: function (data)
+                {
+                    toastr.success('Delete Success');
+                    setTimeout(function(){window.location.href="/TurnToManagePage";},2000);
+                }
+            })
+
+    }
+</script>
 <script type="text/javascript">
     $(function() {
         $.ajax(
@@ -155,13 +250,37 @@
                     {
                         var row=document.createElement("tr"); //创建行
 
-                        for(var y=0;y<5;y++)
+                        for(var y=0;y<6;y++)
                         {
                             if(y==0)
                             {
-                                var td1=document.createElement("td"); //创建单元格
+                                var td1 = document.createElement("td"); //创建单元格
+                                td1.align = "center";
+                                var a1 = document.createElement("a");
+                                var i1 = document.createElement("i");
+                                var a2 = document.createElement("a");
+                                var i2 = document.createElement("i");
+                                a2.setAttribute("onclick", "deleteAccount(this," + x + ")");
+                                a1.title = "Terminate";
+                                a2.title = "Delete";
+                                a1.className = 'btn btn-default';
+                                a2.className = 'btn btn-danger';
+                                i1.className = 'iconfont';
+                                i2.className = 'iconfont';
+                                a1.appendChild(i1);
+                                a2.appendChild(i2);
+                                // i1.appendChild(document.createTextNode("&#xe624;"));
+                                i1.innerHTML = "&#xe624;";
+                                i2.innerHTML = "&#xe600";
 
-                                td1.appendChild(document.createTextNode(data[x].userid)); //为单元格添加内容
+                                //i2.appendChild(document.createTextNode("&#xe600;"));
+                                //                                $("#discussionTable").trigger("create");//为单元格添加内容
+                                //                                var a1=' <a class="btn btn-default"><i class="iconfont">&#xe624;</i></a>';
+                                //                                var a2='<a class="btn btn-dange"><i class="iconfont">&#xe600;</i></a>';
+
+                                td1.appendChild(a1);
+                                td1.append(" ");
+                                td1.appendChild(a2);
 
                                 row.appendChild(td1); //将单元格添加到行内
                             }
@@ -169,11 +288,26 @@
                             {
                                 var td1=document.createElement("td"); //创建单元格
 
+                                td1.appendChild(document.createTextNode(data[x].userid)); //为单元格添加内容
+                                row.appendChild(td1); //将单元格添加到行内
+                            }
+                            else if(y==2)
+                            {
+                                var td1=document.createElement("td"); //创建单元格
+
                                 td1.appendChild(document.createTextNode(data[x].username)); //为单元格添加内容
 
                                 row.appendChild(td1); //将单元格添加到行内
                             }
-                            else if(y==2)
+                            else if(y==3)
+                            {
+                                var td1=document.createElement("td"); //创建单元格
+
+                                td1.appendChild(document.createTextNode(distinguishUserType(data[x].type))); //为单元格添加内容
+
+                                row.appendChild(td1); //将单元格添加到行内
+                            }
+                            else if(y==4)
                             {
                                 var td1=document.createElement("td"); //创建单元格
 
@@ -181,15 +315,7 @@
 
                                 row.appendChild(td1); //将单元格添加到行内
                             }
-                                else if(y==3)
-                            {
-                                var td1=document.createElement("td"); //创建单元格
-
-                                td1.appendChild(document.createTextNode(data[x].phonenumber)); //为单元格添加内容
-
-                                row.appendChild(td1); //将单元格添加到行内
-                            }
-                            else if(y==4)
+                            else if(y==5)
                             {
                                 var td1=document.createElement("td"); //创建单元格
 
@@ -199,19 +325,32 @@
                             }
 
                         }
-
-
-
                         document.getElementById("accountTable").append(row); //将行添加到<tbody>中
                     }
-
+                    Metis.MetisTable();
+                    Metis.metisSortable();
                 }
             })
-        });
-</script>
-<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    });
+    function distinguishUserType(usertype){
+        if(usertype==0)
+        {
+            return "admin";
+        }
 
-<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+       else if(usertype==1)
+        {
+            return "manager";
+        }
+
+       else if(usertype==2)
+        {
+            return "volunteer";
+        }
+    }
+
+
+</script>
 
 </body>
 </html>
