@@ -98,11 +98,33 @@ public class ManageController {
         return new ModelAndView("inferManagementJsp");
 
     }
-    @RequestMapping(value = "/getVolJsp")
 
-    public ModelAndView getPMJsp() {
 
-        return new ModelAndView("addVolunteer");
+    @RequestMapping(value = "/GetMainJsp")
+
+    public ModelAndView getMainJsp() {
+
+        return new ModelAndView("mainInterfaceJsp");
+
+    }
+
+    @RequestMapping(value = "/GetAddAccountJsp")
+
+    public ModelAndView getAddAccountJsp() {
+
+        return new ModelAndView("addAccountJsp");
+    }
+
+    @RequestMapping(value = "/DeleteAccount")
+
+    public void deleteAccount(PrintWriter pw,String accountname) {
+        SqlSession sqlSession = MyBatisUtil.getSqlSession(true);
+        // 得到UserMapperI接口的实现类对象，UserMapperI接口的实现类对象由sqlSession.getMapper(UserMapperI.class)动态构建出来
+        AccountMapperI mapper = sqlSession.getMapper(AccountMapperI.class);
+
+        int x=mapper.deleteByName(accountname);
+        pw.write("success");
+
 
     }
 

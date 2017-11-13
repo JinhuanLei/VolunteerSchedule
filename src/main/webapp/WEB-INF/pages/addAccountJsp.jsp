@@ -53,7 +53,7 @@
                     时间：2017-10-11
                     描述：
                  <input type="text" class="form-control" placeholder="Search...">-->
-                <button type="button" class="btn btn-default navbar-btn">Logout</button>
+                <button type="button" class="btn btn-default navbar-btn" onclick="logoutFunction()">Logout</button>
             </form>
         </div>
     </div>
@@ -66,32 +66,25 @@
                 <li class="active"><a href="/getManageJsp">Overview <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="visible-ad-block"><a href="/getManageJsp">Account</a></li>
+                <li class="hidden-ad"><a href="/GetAddAccountJsp">Add Account</a></li>
                 <li class="hidden-ad"><a href="/getReportJsp">Report</a></li>
 
             </ul>
-            <!--
-                作者：576253806@qq.com
-                时间：2017-10-11
-                描述：
-             <ul class="nav nav-sidebar">
-                  <li class="active"><a href="">Nav item</a></li>
-                  <li><a href="">Nav item again</a></li>
-                  <li><a href="">One more nav</a></li>
-                  <li><a href="">Another nav item</a></li>
-                  <li><a href="">More navigation</a></li>
-              </ul>
-              <ul class="nav nav-sidebar">
-                  <li class="active"><a href="">Nav item again</a></li>
-                  <li><a href="">One more nav</a></li>
-                  <li><a href="">Another nav item</a></li>
-              </ul> -->
+
         </div>
     </div>
 </div>
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
 
-    <h1 class="sub-header">Add a new Volunteer</h1>
+    <h1 class="sub-header">Add a new User</h1>
+    <p>UserType:</p>
+    <select class="form-control" id="usertype">
+        <option></option>
+        <option>Manager</option>
+        <option>Volunteer</option>
+
+    </select>
 
     <p>UserName:</p>
     <input type="text" class="form-control" placeholder="Please input a username" id="username"/>
@@ -101,24 +94,29 @@
     <input type="password" class="form-control" placeholder="Please repeat password" id="password2"/>
     <input type="submit" value="Summit" style="float: right" onclick="addVolunteer()"/>
 
-        <span class="errorinfer" id="errorinfer">Incomparable Password</span>
+    <span class="errorinfer" id="errorinfer">Incomparable Password</span>
 
 </div>
 
 <script type="text/javascript">
+    function logoutFunction()
+    {
+        window.location.href="/GetMainJsp";
+    }
+
     function addVolunteer() {
 //        alert("qwq");
-   var username=document.getElementById("username").value;
-   var password1=document.getElementById("password1").value;
-   var password2=document.getElementById("password2").value;
-   var error = document. getElementById("errorinfer");
+        var username=document.getElementById("username").value;
+        var password1=document.getElementById("password1").value;
+        var password2=document.getElementById("password2").value;
+        var error = document. getElementById("errorinfer");
         error.style.visibility="hidden";
 //        alert(password1 +"  "+password2);
-   if(password1!=password2)
-   {
-       error.style.visibility="visible";
-       return;
-   }
+        if(password1!=password2)
+        {
+            error.style.visibility="visible";
+            return;
+        }
         $.ajax(
             {
                 type: "POST" ,

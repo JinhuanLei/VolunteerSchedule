@@ -48,8 +48,6 @@
         function deleteFunction()
         {
             var del=prompt("AccountID");
-
-
         }
 
 
@@ -58,13 +56,15 @@
         {
             var add=prompt("AccountID");
 
-
-
         }
         function changeaTOVolunteer() {
-            window.location.href="/getVolJsp";
+            window.location.href="/GetAddAccountJsp";
         }
 
+        function logoutFunction()
+        {
+            window.location.href="/GetMainJsp";
+        }
 
     </script>
 
@@ -106,7 +106,7 @@
                 	时间：2017-10-11
                 	描述：
                 <input type="text" class="form-control" placeholder="Search...">-->
-                <button type="button" class="btn btn-default navbar-btn">Logout</button>
+                <button type="button" class="btn btn-default navbar-btn" onclick="logoutFunction()">Logout</button>
             </form>
         </div>
     </div>
@@ -118,6 +118,7 @@
             <ul class="nav nav-sidebar">
                 <li class="active"><a href="/getManageJsp">Overview <span class="sr-only">(current)</span></a></li>
                 <li class="visible-ad-block"><a href="/getManageJsp">Account</a></li>
+                <li class="hidden-ad"><a href="/GetAddAccountJsp">Add Account</a></li>
                 <li class="hidden-ad"><a href="/getReportJsp">Report</a></li>
 
             </ul>
@@ -148,7 +149,7 @@
                                 <div class="box">
                                     <header>
                                         <div class="icons"><i class="fa fa-table"></i></div>
-                                        <h5>Discussion Table</h5>
+                                        <h5>Account Table</h5>
                                     </header>
                                     <div id="collapse4" class="body">
                                         <table id="dataTable" class="table table-bordered table-condensed table-hover table-striped">
@@ -222,16 +223,16 @@
 
     function deleteAccount(thisObj,idcount)
     {
-        var discussionname=document.getElementById("discussionname"+idcount).innerText;
+        var accountname=document.getElementById("accountname"+idcount).innerText;
         $.ajax(
             {
                 type: "POST" ,
                 url: "/DeleteAccount" ,
-                data: "discussionname=" +discussionname,
+                data: "accountname=" +accountname,
                 success: function (data)
                 {
                     toastr.success('Delete Success');
-                    setTimeout(function(){window.location.href="/TurnToManagePage";},2000);
+                    setTimeout(function(){window.location.href="/getManageJsp";},2000);
                 }
             })
 
@@ -295,6 +296,7 @@
                             {
                                 var td1=document.createElement("td"); //创建单元格
 
+                                td1.id='accountname'+x;
                                 td1.appendChild(document.createTextNode(data[x].username)); //为单元格添加内容
 
                                 row.appendChild(td1); //将单元格添加到行内

@@ -47,7 +47,7 @@
                 	时间：2017-10-11
                 	描述：
                <input type="text" class="form-control" placeholder="Search..."> -->
-                <button type="button" class="btn btn-default navbar-btn">Logout</button>
+                <button type="button" class="btn btn-default navbar-btn" onclick="logoutFunction()">Logout</button>
             </form>
         </div>
     </div>
@@ -59,6 +59,7 @@
             <ul class="nav nav-sidebar">
                 <li class="active"><a href="/getManageJsp">Overview <span class="sr-only">(current)</span></a></li>
                 <li class="visible-ad-block"><a href="/getManageJsp">Account</a></li>
+                <li class="hidden-ad"><a href="/GetAddAccountJsp">Add Account</a></li>
                 <li class="hidden-ad"><a href="/getReportJsp">Report</a></li>
 
             </ul>
@@ -129,6 +130,11 @@
             }
         );
 
+    }
+
+    function logoutFunction()
+    {
+        window.location.href="/GetMainJsp";
     }
 </script>
 

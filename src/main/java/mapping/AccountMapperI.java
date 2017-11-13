@@ -1,6 +1,7 @@
 package mapping;
 
 import domain.account;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 
@@ -20,6 +21,11 @@ public interface AccountMapperI {
 
     @Select("select * from account")
     public List<account> getAllAccounts();
+
+    @Delete("delete from account where username=#{accountname}")
+    public int deleteByName(String accountname);
+
+
 //    @Select("select * from seatsreserve where date=#{date}")
 //    public List<account> getByDate(String date);
     //使用@Select注解指明getAll方法要执行的SQL
