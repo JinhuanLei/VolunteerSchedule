@@ -92,25 +92,31 @@
     <input type="password" class="form-control" placeholder="Please input password" id="password1"/>
     <p>Password again:</p>
     <input type="password" class="form-control" placeholder="Please repeat password" id="password2"/>
-    <input type="submit" value="Summit" style="float: right" onclick="addVolunteer()"/>
+    <br>
+    <input type="submit" class="btn btn-success" value="Summit" style="float: right" onclick="addAccount()"/>
 
     <span class="errorinfer" id="errorinfer">Incomparable Password</span>
 
 </div>
 
 <script type="text/javascript">
+
+
     function logoutFunction()
     {
         window.location.href="/GetMainJsp";
     }
 
-    function addVolunteer() {
+    function addAccount() {
 //        alert("qwq");
         var username=document.getElementById("username").value;
         var password1=document.getElementById("password1").value;
         var password2=document.getElementById("password2").value;
         var error = document. getElementById("errorinfer");
+        var usertype=$("#usertype").val();
         error.style.visibility="hidden";
+
+
 //        alert(password1 +"  "+password2);
         if(password1!=password2)
         {
@@ -120,12 +126,12 @@
         $.ajax(
             {
                 type: "POST" ,
-                url: "/AddNewVolunteer" ,
-                data: "username=" +username+"&password=" +password1 ,
+                url: "/AddNewAccountByAdmin" ,
+                data: "username=" +username+"&password=" +password1+"&usertype="+usertype ,
                 dataType: "text",
                 success: function (data)
                 {
-//               alert("chenggong");
+           window.location.href="/TurnToManagePage";
                 }
             }
         );

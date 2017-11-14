@@ -7,12 +7,12 @@ import org.apache.ibatis.annotations.Select;
 import java.util.List;
 
 public interface ServiceMapperI {
-    @Insert("insert into service(serviceid,servicename,location,servicetime,contactpersonname,contactinformation,introduction,peoplenum) values(#{serviceid},#{servicename}, #{location},#{servicetime},#{contactpersonname},#{contactinformation},#{introduction},#{peoplenum})")
+    @Insert("insert into service(serviceid,servicename,location,starttime,endtime,contactpersonname,contactinformation,introduction,peoplenum) values(#{serviceid},#{servicename}, #{location},#{starttime},#{endtime},#{contactpersonname},#{contactinformation},#{introduction},#{peoplenum})")
     public int add(service ser);
 
 
     @Select("select * from service where serviceid=#{id}")
-public service getServiceByID(int id);
+     public service getServiceByID(int id);
     //    //使用@Update注解指明update方法要执行的SQL
 //    @Update("update users set name=#{name},age=#{age} where id=#{id}")
 //    public int update(account user);

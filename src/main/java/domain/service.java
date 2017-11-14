@@ -4,11 +4,28 @@ public class service {
     private  int serviceid;
     private String servicename;
     private  String location;
-    private String servicetime;
+    private String starttime;
+    private String endtime;
     private String contactpersonname;
     private String contactinformation;
     private String introduction;
     private int peoplenum;
+
+    public String getStarttime() {
+        return starttime;
+    }
+
+    public void setStarttime(String starttime) {
+        this.starttime = starttime;
+    }
+
+    public String getEndtime() {
+        return endtime;
+    }
+
+    public void setEndtime(String endtime) {
+        this.endtime = endtime;
+    }
 
     public int getPeoplenum() {
         return peoplenum;
@@ -42,13 +59,7 @@ public class service {
         this.location = location;
     }
 
-    public String getServicetime() {
-        return servicetime;
-    }
 
-    public void setServicetime(String servicetime) {
-        this.servicetime = servicetime;
-    }
 
     public String getContactpersonname() {
         return contactpersonname;
@@ -76,6 +87,6 @@ public class service {
 
     @Override
     public String toString() {
-        return "id"+serviceid+"name"+servicename+"time"+servicetime;
+        return "id"+serviceid+"name"+servicename+"time";
     }
 }

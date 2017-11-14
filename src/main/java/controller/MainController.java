@@ -15,7 +15,6 @@ import java.util.List;
 public class MainController {
 
     @RequestMapping(value = "/initialVolunteerData")
-
     public @ResponseBody
     List<service> initialVolunteerData() {
         SqlSession sqlSession = MyBatisUtil.getSqlSession(true);

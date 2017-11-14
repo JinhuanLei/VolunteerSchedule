@@ -38,25 +38,50 @@ public class ManageController {
         return new ModelAndView("inferManagementJsp");
     }
 
-    @RequestMapping(value = "/AddNewVolunteer")
+    @RequestMapping(value="/TurnToServiceTable")
+    public ModelAndView turnToServiceTable()
+    {
+        return new ModelAndView("servicesTable");
+    }
 
-    public void AddNewVolunteer(String username, String password, PrintWriter pw) {
+    @RequestMapping(value="/TurnToManagePage")
+    public ModelAndView turnToManagePage()
+    {
+        return new ModelAndView("inferManagementJsp");
+    }
+
+    @RequestMapping(value = "/AddNewAccountByAdmin")
+
+    public void addNewAccountByAdmin(String username, String password,String usertype, PrintWriter pw) {
         SqlSession sqlSession = MyBatisUtil.getSqlSession(true);
         // 得到UserMapperI接口的实现类对象，UserMapperI接口的实现类对象由sqlSession.getMapper(UserMapperI.class)动态构建出来
         AccountMapperI mapper = sqlSession.getMapper(AccountMapperI.class);
         account a=new account();
+        int Utype=ditinguishType(usertype);
         a.setUsername(username);
         a.setPassword(password);
+        a.setType(Utype);
         int x=mapper.add(a);
         sqlSession.close();
         String str="";
         pw.write(str);
 
     }
+    public int  ditinguishType(String usertype)
+    {
+        if(usertype.equals("Manager"))
+        {
+            return 1;
+        }
 
+        else if(usertype.equals("Volunteer"))
+        {
+            return 2;
+        }
+        return -1;
+    }
     @RequestMapping(value = "/AddNewPost")
-
-    public void AddNewPost(String servicename, String location,String servicetime,String peoplenum,String contactpersonname,String contactinformation,String introduction, PrintWriter pw) {
+    public void AddNewPost(String servicename, String location,String starttime,String endtime,String peoplenum,String contactpersonname,String contactinformation,String introduction, PrintWriter pw) {
         SqlSession sqlSession = MyBatisUtil.getSqlSession(true);
         // 得到UserMapperI接口的实现类对象，UserMapperI接口的实现类对象由sqlSession.getMapper(UserMapperI.class)动态构建出来
         ServiceMapperI mapper = sqlSession.getMapper(ServiceMapperI.class);
@@ -64,7 +89,8 @@ public class ManageController {
         s.setServicename(servicename);
         s.setPeoplenum(Integer.parseInt(peoplenum));
         s.setLocation(location);
-        s.setServicetime(servicetime);
+       s.setStarttime(starttime);
+       s.setEndtime(endtime);
         s.setContactpersonname(contactpersonname);
         s.setContactinformation(contactinformation);
         s.setIntroduction(introduction);

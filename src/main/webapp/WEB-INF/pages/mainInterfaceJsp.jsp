@@ -46,8 +46,8 @@
             <ul class="nav navbar-nav navbar-right" >
                 <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">User <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li id="manageli"><a id="action-1" href="/MainToManage" >Manage</a></li>
-
+                        <li id="adminli"><a id="action-1" href="/MainToManage" >Admin</a></li>
+                        <li id="manageli"><a id="action-2" href="/TurnToServiceTable" >Manage</a></li>
                         <li><a href="#">Setting</a></li>
                         <li class="divider"></li>
                         <li><a href="/logoutFuntion">Log Out</a></li>
@@ -161,17 +161,23 @@
         var type="<%=session.getAttribute("usertype")%>";   //判断是否是admin 管理员 或user
         var navbar=document.getElementById("downbar");
         var loginbutton=document.getElementById("submitform");
-        var manageAutho=document.getElementById("manageli");   //Manage Discussion
+        var manageAutho=document.getElementById("adminli");   //admin Discussion
+        var manageAutho2=document.getElementById("manageli");  //manager
         console.log("username"+username+(username!="null"));
+        manageAutho2.style.display="none";
 //        if(username!="")   //exist
             if (username!="null")
         {
             navbar.style.display="block";
             loginbutton.style.display="none";
             console.log(type==2);
-            if(type==2)
+            if(type==2||type==1)
             {
                 manageAutho.style.display="none";
+            }
+             if(type==1)
+            {
+                manageAutho2.style.display="block";
             }
 
         }

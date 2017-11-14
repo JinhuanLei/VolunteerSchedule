@@ -16,7 +16,7 @@
     <link href="build/toastr.css" rel="stylesheet" />
     <!-- Metis core stylesheet -->
     <link rel="stylesheet" href="assets/css/main.css">
-
+    <link href="build/toastr.css" rel="stylesheet" />
     <!-- metisMenu stylesheet -->
     <link rel="stylesheet" href="assets/lib/metismenu/metisMenu.css">
     <%--<link rel="stylesheet" href="assets/lib/onoffcanvas/onoffcanvas.css">--%>
@@ -43,8 +43,9 @@
             padding-left: 0
         }
     </style>
-
+    <script src="build/toastr.min.js"></script>
     <script type="text/javascript">
+        toastr.options.positionClass = 'toast-top-center';
         function deleteFunction()
         {
             var del=prompt("AccountID");
@@ -117,27 +118,22 @@
         <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
                 <li class="active"><a href="/getManageJsp">Overview <span class="sr-only">(current)</span></a></li>
-                <li class="visible-ad-block" id="accountli"><a href="/getManageJsp">Account</a></li>
-                <li class="hidden-ad" id="addaccountli"><a href="/GetAddAccountJsp">Add Account</a></li>
-
-                <%--<li class="hidden-ad" id="addreportli"><a href="/getReportJsp">Report</a></li>--%>
+                <%--<li class="visible-ad-block" id="accountli"><a href="/getManageJsp">Account</a></li>--%>
+                <%--<li class="hidden-ad" id="addaccountli"><a href="/GetAddAccountJsp">Add Account</a></li>--%>
+                <li class="hidden-ad" id="reportli"><a href="/TurnToServiceTable">Service</a></li>
+                <li class="hidden-ad" id="addreportli"><a href="/getReportJsp">Add Service</a></li>
 
             </ul>
 
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
-<br>
-            <h1 class="sub-header" >Account Information
-                <button class="btn btn-default" aria-label="Left Align" title="Add a new Volunteer" onclick="changeaTOVolunteer()">
+            <br>
+            <h1 class="sub-header" >Service Information
+                <button class="btn btn-default" aria-label="Left Align" title="Add a new service" onclick="changeaTOVolunteer()">
                     <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></a>
                 </button>
-                <button type="submit" class="btn btn-default" aria-label="Left Align" title="Add a Project Manager" onclick="addPMFunction()">
-                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                </button>
-                <button type="submit" class="btn btn-default" aria-label="Left Align" title="Delete an account" onclick="deleteFunction()">
-                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-                </button>
+
 
             </h1>
 
@@ -150,31 +146,32 @@
                                 <div class="box">
                                     <header>
                                         <div class="icons"><i class="fa fa-table"></i></div>
-                                        <h5>Account Table</h5>
+                                        <h5>Service Table</h5>
                                     </header>
                                     <div id="collapse4" class="body">
                                         <table id="dataTable" class="table table-bordered table-condensed table-hover table-striped">
                                             <thead>
                                             <tr>
                                                 <th><i class="iconfont">&#xe607;</i></th>
-                                                <th>UserID</th>
-                                                <th>Name</th>
-                                                <th>Usertype</th>
-                                                <th>Email</th>
-                                                <th>City</th>
+                                                <th>Service ID</th>
+                                                <th>Service Name</th>
+                                                <th>Location</th>
+                                                <th>Starttime</th>
+                                                <th>Endtime</th>
+
                                             </tr>
                                             </thead>
                                             <tbody id="accountTable">
                                             <%--<tr>--%>
-                                                <%--<td align="center">--%>
-                                                    <%--<a class="btn btn-default"><i class="iconfont">&#xe624;</i></a>--%>
-                                                    <%--<a class="btn btn-danger"><i class="iconfont">&#xe600;</i></a>--%>
-                                                <%--</td>--%>
-                                                <%--<td>1</td>--%>
-                                                <%--<td class="hidden-xs">John Doe</td>--%>
-                                                <%--<td>Administrator</td>--%>
-                                                <%--<td>12691613@qq.com</td>--%>
-                                                <%--<td>La Crosse</td>--%>
+                                            <%--<td align="center">--%>
+                                            <%--<a class="btn btn-default"><i class="iconfont">&#xe624;</i></a>--%>
+                                            <%--<a class="btn btn-danger"><i class="iconfont">&#xe600;</i></a>--%>
+                                            <%--</td>--%>
+                                            <%--<td>1</td>--%>
+                                            <%--<td class="hidden-xs">John Doe</td>--%>
+                                            <%--<td>Administrator</td>--%>
+                                            <%--<td>12691613@qq.com</td>--%>
+                                            <%--<td>La Crosse</td>--%>
                                             <%--</tr>--%>
                                             </tbody>
                                             </tbody>
@@ -232,7 +229,7 @@
                 data: "accountname=" +accountname,
                 success: function (data)
                 {
-                        toastr.success('Delete Success');
+                    toastr.success('Delete Success');
                     setTimeout(function(){window.location.href="/getManageJsp";},2000);
                 }
             })
@@ -244,10 +241,10 @@
         $.ajax(
             {
                 type: "POST",
-                url: "/getAllAccount",
+                url: "/initialVolunteerData",
                 success: function (data) {
 
-                    var count = Object.keys(data).length
+                    var count = Object.keys(data).length;
                     for(var x=0;x<count;x++)
                     {
                         var row=document.createElement("tr"); //创建行
@@ -289,24 +286,23 @@
                             else if(y==1)
                             {
                                 var td1=document.createElement("td"); //创建单元格
-
-                                td1.appendChild(document.createTextNode(data[x].userid)); //为单元格添加内容
+                                td1.appendChild(document.createTextNode(data[x].serviceid)); //为单元格添加内容
                                 row.appendChild(td1); //将单元格添加到行内
                             }
                             else if(y==2)
                             {
                                 var td1=document.createElement("td"); //创建单元格
-
-                                td1.id='accountname'+x;
-                                td1.appendChild(document.createTextNode(data[x].username)); //为单元格添加内容
-
+                                td1.id='servicename'+x;
+                                td1.appendChild(document.createTextNode(data[x].servicename)); //为单元格添加内容
                                 row.appendChild(td1); //将单元格添加到行内
                             }
+
+
                             else if(y==3)
                             {
                                 var td1=document.createElement("td"); //创建单元格
 
-                                td1.appendChild(document.createTextNode(distinguishUserType(data[x].type))); //为单元格添加内容
+                                td1.appendChild(document.createTextNode(data[x].location)); //为单元格添加内容
 
                                 row.appendChild(td1); //将单元格添加到行内
                             }
@@ -314,18 +310,20 @@
                             {
                                 var td1=document.createElement("td"); //创建单元格
 
-                                td1.appendChild(document.createTextNode(data[x].email)); //为单元格添加内容
+                                td1.appendChild(document.createTextNode(data[x].starttime)); //为单元格添加内容
 
                                 row.appendChild(td1); //将单元格添加到行内
                             }
+
                             else if(y==5)
                             {
                                 var td1=document.createElement("td"); //创建单元格
 
-                                td1.appendChild(document.createTextNode(data[x].city)); //为单元格添加内容
+                                td1.appendChild(document.createTextNode(data[x].endtime)); //为单元格添加内容
 
                                 row.appendChild(td1); //将单元格添加到行内
                             }
+
 
                         }
                         document.getElementById("accountTable").append(row); //将行添加到<tbody>中
@@ -341,12 +339,12 @@
             return "admin";
         }
 
-       else if(usertype==1)
+        else if(usertype==1)
         {
             return "manager";
         }
 
-       else if(usertype==2)
+        else if(usertype==2)
         {
             return "volunteer";
         }

@@ -13,7 +13,7 @@
 
 
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-
+    <link href="build/toastr.css" rel="stylesheet" />
 
 
 
@@ -58,9 +58,8 @@
         <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
                 <li class="active"><a href="/getManageJsp">Overview <span class="sr-only">(current)</span></a></li>
-                <li class="visible-ad-block"><a href="/getManageJsp">Account</a></li>
-                <li class="hidden-ad"><a href="/GetAddAccountJsp">Add Account</a></li>
-                <li class="hidden-ad"><a href="/getReportJsp">Report</a></li>
+                <li class="hidden-ad" id="reportli"><a href="/TurnToServiceTable">Report</a></li>
+                <li class="hidden-ad" id="addreportli"><a href="/getReportJsp">Add Report</a></li>
 
             </ul>
             <!--
@@ -91,9 +90,10 @@
             <input type="text" class="form-control" placeholder="Event Name" id="servicename"/>
             <p>Place:</p>
             <input type="text" class="form-control" placeholder="Where..." id="location"/>
-            <p>Date:</p>
-            <input type="text" class="form-control" placeholder="mm/dd/yyyy-xx:xx" id="servicetime"/>
-
+            <p>Start Date:</p>
+            <input type="text" class="form-control" placeholder="mm/dd/yyyy-xx:xx" id="starttime"/>
+            <p>End Date:</p>
+            <input type="text" class="form-control" placeholder="mm/dd/yyyy-xx:xx" id="endtime"/>
             <p>Volunteer Number Required:</p>
             <input type="number" class="form-control" placeholder="How mamy volunteers needed." id="peoplenum"/>
             <p>Manager:</p>
@@ -102,17 +102,22 @@
             <input type="number" class="form-control" placeholder="Phone Number" id="contactinformation"/>
             <p>Introduction:</p>
             <textarea class="form-control" rows="3" placeholder="Say something about Event" id="introduction"></textarea>
-            <input type="submit" value="Summit" style="float: right" onclick="addReport()"/>
+            <br>
+            <input type="submit" class="btn btn-success" value="Summit" style="float: right" onclick="addReport()"/>
 
 
             </div>
+<script src="assets/lib/jquery/jquery.js"></script>
+<script src="build/toastr.min.js"></script>
 
 <script type="text/javascript">
+    toastr.options.positionClass = 'toast-top-center';
     function addReport(){
-        alert("miaomiao");
+       // alert("miaomiao");
         var servicename=document.getElementById("servicename").value;
         var location=document.getElementById("location").value;
-        var servicetime=document.getElementById("servicetime").value;
+        var starttime=document.getElementById("starttime").value;
+        var endtime=document.getElementById("endtime").value;
         var peoplenum=document.getElementById("peoplenum").value;
         var contactperson=document.getElementById("contactperson").value;
         var contactinformation=document.getElementById("contactinformation").value;
@@ -121,11 +126,11 @@
             {
                 type: "POST" ,
                 url: "/AddNewPost" ,
-                data: "servicename=" +servicename+"&location=" +location+"&servicetime="+servicetime+"&peoplenum="+peoplenum+"&contactpersonname="+contactperson+"&contactinformation="+contactinformation+"&introduction="+introduction,
+                data: "servicename="+servicename+"&location=" +location+"&starttime="+starttime+"&peoplenum="+peoplenum+"&contactpersonname="+contactperson+"&contactinformation="+contactinformation+"&introduction="+introduction+"&endtime="+endtime,
                 dataType: "text",
                 success: function (data)
                 {
-             alert("chenggong");
+                    toastr.success('Add Success');
                 }
             }
         );
