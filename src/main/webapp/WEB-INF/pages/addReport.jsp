@@ -14,7 +14,7 @@
 
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="build/toastr.css" rel="stylesheet" />
-
+    <link href="css/bootstrap-datetimepicker.css"rel="stylesheet" />
 
 
 
@@ -91,9 +91,11 @@
             <p>Place:</p>
             <input type="text" class="form-control" placeholder="Where..." id="location"/>
             <p>Start Date:</p>
-            <input type="text" class="form-control" placeholder="mm/dd/yyyy-xx:xx" id="starttime"/>
+            <%--<input type="text" class="form-control" placeholder="mm/dd/yyyy-xx:xx" id="starttime"/>--%>
+            <input type="text" name="startTime" class="form-control" id="starttime"readonly/>
             <p>End Date:</p>
-            <input type="text" class="form-control" placeholder="mm/dd/yyyy-xx:xx" id="endtime"/>
+            <%--<input type="text" class="form-control" placeholder="mm/dd/yyyy-xx:xx" id="endtime"/>--%>
+            <input type="text" name="endTime" class="form-control" id="endtime" readonly/>
             <p>Volunteer Number Required:</p>
             <input type="number" class="form-control" placeholder="How mamy volunteers needed." id="peoplenum"/>
             <p>Manager:</p>
@@ -109,9 +111,30 @@
             </div>
 <script src="assets/lib/jquery/jquery.js"></script>
 <script src="build/toastr.min.js"></script>
-
+<script src="js/bootstrap-datetimepicker.min.js"></script>
 <script type="text/javascript">
     toastr.options.positionClass = 'toast-top-center';
+    $("input[name='startTime']").datetimepicker({
+        minView : "hour", //  选择时间时，最小可以选择到那层；默认是‘hour’也可用0表示
+        language : 'zen', // 语言
+        autoclose : true, //  true:选择时间后窗口自动关闭
+        format : 'yyyy-mm-dd hh:00:00', // 文本框时间格式，设置为0,最后时间格式为2017-03-23 17:00:00
+        todayBtn : true, // 如果此值为true 或 "linked"，则在日期时间选择器组件的底部显示一个 "Today" 按钮用以选择当前日期。
+        startDate : new Date()  // 窗口可选时间从今天开始
+//        endDate : new Date()   // 窗口最大时间直至今天
+    })
+
+    $("input[name='endTime']").datetimepicker({
+        minView : "hour", //  选择时间时，最小可以选择到那层；默认是‘hour’也可用0表示
+        language : 'zen', // 语言
+        autoclose : true, //  true:选择时间后窗口自动关闭
+        format : 'yyyy-mm-dd hh:00:00', // 文本框时间格式，设置为0,最后时间格式为2017-03-23 17:00:00
+        todayBtn : true, // 如果此值为true 或 "linked"，则在日期时间选择器组件的底部显示一个 "Today" 按钮用以选择当前日期。
+        startDate : new Date()  // 窗口可选时间从今天开始
+//        endDate : new Date()   // 窗口最大时间直至今天
+    })
+
+
     function addReport(){
        // alert("miaomiao");
         var servicename=document.getElementById("servicename").value;

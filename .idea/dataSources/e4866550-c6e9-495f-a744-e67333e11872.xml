@@ -130,11 +130,11 @@
     </column>
     <column id="38" parent="11" name="starttime">
       <Position>4</Position>
-      <DataType>varchar(40)|0</DataType>
+      <DataType>varchar(60)|0</DataType>
     </column>
     <column id="39" parent="11" name="endtime">
       <Position>5</Position>
-      <DataType>varchar(40)|0</DataType>
+      <DataType>varchar(60)|0</DataType>
     </column>
     <column id="40" parent="11" name="contactpersonname">
       <Position>6</Position>
