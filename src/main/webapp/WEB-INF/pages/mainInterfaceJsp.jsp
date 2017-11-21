@@ -161,7 +161,7 @@
     </div>
 </div>
 <!-- Main jumbotron for a primary marketing message or call to action -->
-<div class="jumbotron" style="background-image: url(../../images/timg.jpg);">
+<div class="jumbotron" style=" margin-top: -20px;background-image: url(../../images/timg.jpg);">
     <div class="container">
         <h1>WELCOME!</h1>
         <p>Introduction of website</p>
@@ -457,7 +457,7 @@
                         var eleInput=$("#EditAccount input");
                     // document.getElementById("username").value=Objdata.username;
                         //alert(Objdata.username);
-                        eleH[0].value=Objdata.firstname+" "+Objdata.lastname;
+                        eleH[0].innerHTML=Objdata.firstname+" "+Objdata.lastname;
                         eleInput[0].value=Objdata.username;
                         eleInput[1].value=Objdata.firstname;
                         eleInput[2].value=Objdata.lastname;
@@ -476,7 +476,7 @@
                         data: "username="+username,
                         dataType: "text",
                         success:function (data) {
-
+              //alert("qwq");
                             var data1=eval(data);
                             var count = Object.keys(data1).length;
                             console.log("--------"+count);
@@ -570,6 +570,12 @@ function applyService(thisObj,idcount) {
     var serviceid=document.getElementById("serviceid"+idcount).innerText;
     var mytable = document.getElementById("accountTable");
     //alert(serviceid);
+    var type="<%=session.getAttribute("usertype")%>";
+    if(type==0||type=="null")
+    {
+        toastr.error('Operation Declined');
+        return;
+    }
     $.ajax(
         {
             type: "POST" ,

@@ -104,7 +104,7 @@
                 	时间：2017-10-11
                 	描述：
                 <input type="text" class="form-control" placeholder="Search...">-->
-                <button type="button" class="btn btn-default navbar-btn" onclick="logoutFunction()">Logout</button>
+                <button type="button" class="btn btn-default navbar-btn" onclick="logoutFunction()">Exit</button>
             </form>
         </div>
     </div>
@@ -145,8 +145,9 @@
                                     <tr>
 
                                         <th>Request ID</th>
-                                        <th>Service Name</th>
+
                                         <th>Username</th>
+                                        <th>Service Name</th>
                                         <th><i class="iconfont">&#xe607;</i></th>
 
                                     </tr>
@@ -212,24 +213,34 @@
     function permitRequest(thisObj,idcount)
     {
         var eventid=document.getElementById("eventid"+idcount).innerText;
+        var requestusername=document.getElementById("username"+idcount).innerText;
+        var datatable=document.getElementById("dataTable");
+        toastr.success('Permit Request');
+        datatable.deleteRow(idcount+1);
         $.ajax(
             {
                 type: "POST" ,
                 url: "/PermitRequest" ,
-                data: "eventid=" +eventid,
+                data: "eventid=" +eventid+"&username="+requestusername,
                 success: function (data)
                 {
-                    toastr.success('Permit Request');
-                    setTimeout(function(){window.location.href="/TurnToPageServiceRequest";},2000);
+
+                    setTimeout(function(){window.location.href="/TurnToPageServiceRequest";},0);
                 }
             })
 
     }
 
 
+    function getRequestData() {
+
+
+    }
+
     function deleteRequest(thisObj,idcount)
     {
         var eventid=document.getElementById("eventid"+idcount).innerText;
+
         $.ajax(
             {
                 type: "POST" ,
@@ -238,6 +249,7 @@
                 success: function (data)
                 {
                     toastr.success('Decline Request');
+
                     setTimeout(function(){window.location.href="/TurnToPageServiceRequest";},2000);
                 }
             })
@@ -302,7 +314,8 @@
                             else if(y==1)
                             {
                                 var td1=document.createElement("td"); //创建单元格
-                                td1.id='servicename'+x;
+
+                                td1.id='username'+x;
                                 td1.appendChild(document.createTextNode(data[x].username)); //为单元格添加内容
                                 row.appendChild(td1); //将单元格添加到行内
                             }
@@ -311,7 +324,7 @@
                             else if(y==2)
                             {
                                 var td1=document.createElement("td"); //创建单元格
-
+                                td1.id='servicename'+x;
                                 td1.appendChild(document.createTextNode(data[x].servicename)); //为单元格添加内容
 
                                 row.appendChild(td1); //将单元格添加到行内

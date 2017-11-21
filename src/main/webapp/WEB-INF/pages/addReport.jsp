@@ -47,7 +47,7 @@
                 	时间：2017-10-11
                 	描述：
                <input type="text" class="form-control" placeholder="Search..."> -->
-                <button type="button" class="btn btn-default navbar-btn" onclick="logoutFunction()">Logout</button>
+                <button type="button" class="btn btn-default navbar-btn" onclick="logoutFunction()">Exit</button>
             </form>
         </div>
     </div>
@@ -152,6 +152,7 @@
                 success: function (data)
                 {
                     toastr.success('Add Success');
+                    setTimeout(function(){window.location.href="/getManageJsp";},2000);
                 }
             }
         );
