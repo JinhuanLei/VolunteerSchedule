@@ -16,7 +16,7 @@
     <link href="build/toastr.css" rel="stylesheet" />
     <!-- Metis core stylesheet -->
     <link rel="stylesheet" href="assets/css/main.css">
-
+    <link href="build/toastr.css" rel="stylesheet" />
     <!-- metisMenu stylesheet -->
     <link rel="stylesheet" href="assets/lib/metismenu/metisMenu.css">
     <%--<link rel="stylesheet" href="assets/lib/onoffcanvas/onoffcanvas.css">--%>
@@ -33,6 +33,15 @@
             src: url('//at.alicdn.com/t/font_444600_mot3jg1520t9ms4i.eot?#iefix') format('embedded-opentype'), url('//at.alicdn.com/t/font_444600_mot3jg1520t9ms4i.woff') format('woff'), url('//at.alicdn.com/t/font_444600_mot3jg1520t9ms4i.ttf') format('truetype'), url('//at.alicdn.com/t/font_444600_mot3jg1520t9ms4i.svg#iconfont') format('svg');
         }
 
+        @font-face {
+            font-family: 'iconfont';  /* project id 481344 */
+            src: url('//at.alicdn.com/t/font_481344_f6klugrrvr5m6lxr.eot');
+            src: url('//at.alicdn.com/t/font_481344_f6klugrrvr5m6lxr.eot?#iefix') format('embedded-opentype'),
+            url('//at.alicdn.com/t/font_481344_f6klugrrvr5m6lxr.woff') format('woff'),
+            url('//at.alicdn.com/t/font_481344_f6klugrrvr5m6lxr.ttf') format('truetype'),
+            url('//at.alicdn.com/t/font_481344_f6klugrrvr5m6lxr.svg#iconfont') format('svg');
+        }
+
         .iconfont {
             font-family: "iconfont";
             font-size: 16px;
@@ -43,20 +52,9 @@
             padding-left: 0
         }
     </style>
-
+    <script src="build/toastr.min.js"></script>
     <script type="text/javascript">
-        function deleteFunction()
-        {
-            var del=prompt("AccountID");
-        }
-
-
-
-        function addPMFunction()
-        {
-            var add=prompt("AccountID");
-
-        }
+        toastr.options.positionClass = 'toast-top-center';
         function changeaTOVolunteer() {
             window.location.href="/GetAddAccountJsp";
         }
@@ -116,86 +114,75 @@
     <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
-                <li class="active"><a href="/getManageJsp">Overview <span class="sr-only">(current)</span></a></li>
-                <li class="visible-ad-block" id="accountli"><a href="/getManageJsp">Account</a></li>
-                <li class="hidden-ad" id="addaccountli"><a href="/GetAddAccountJsp">Add Account</a></li>
-
-                <%--<li class="hidden-ad" id="addreportli"><a href="/getReportJsp">Report</a></li>--%>
-
+                <li class="active"><a href="/TurnToServiceTable">Overview <span class="sr-only">(current)</span></a></li>
+                <%--<li class="visible-ad-block" id="accountli"><a href="/getManageJsp">Account</a></li>--%>
+                <%--<li class="hidden-ad" id="addaccountli"><a href="/GetAddAccountJsp">Add Account</a></li>--%>
+                <li class="hidden-ad" id="reportli"><a href="/TurnToServiceTable">Service</a></li>
+                <li class="hidden-ad" id="addreportli"><a href="/getReportJsp">Add Service</a></li>
+                <li class="hidden-ad" id="addreportli1"><a href="/TurnToPageServiceRequest">Service Request  <span class="badge">3</span></a></li>
             </ul>
 
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-
 <br>
-            <h1 class="sub-header" >Account Information
-                <button class="btn btn-default" aria-label="Left Align" title="Add a new Volunteer" onclick="changeaTOVolunteer()">
-                    <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></a>
-                </button>
-                <%--<button type="submit" class="btn btn-default" aria-label="Left Align" title="Add a Project Manager" onclick="addPMFunction()">--%>
-                    <%--<span class="glyphicon glyphicon-user" aria-hidden="true"></span>--%>
-                <%--</button>--%>
-                <%--<button type="submit" class="btn btn-default" aria-label="Left Align" title="Delete an account" onclick="deleteFunction()">--%>
-                    <%--<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>--%>
-                <%--</button>--%>
-
+            <h1 class="sub-header" >Service Information
             </h1>
 
             <div id="content">
-                <div class="outer">
-                    <div class="inner bg-light lter">
-                        <!--Begin Datatables-->
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="box">
-                                    <header>
+                <%--<div class="outer">--%>
+                <%--<div class="inner bg-light lter">--%>
+                <!--Begin Datatables-->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="box">
+                            <header>
+                                <div class="icons"><i class="fa fa-table"></i></div>
+                                <h5>Request Table</h5>
+                            </header>
+                            <div id="collapse4" class="body">
+                                <table id="dataTable" class="table table-bordered table-condensed table-hover table-striped">
+                                    <thead>
+                                    <tr>
 
-                                        <h5>Account Table</h5>
-                                    </header>
-                                    <div id="collapse4" class="body">
-                                        <table id="dataTable" class="table table-bordered table-condensed table-hover table-striped">
-                                            <thead>
-                                            <tr>
-                                                <th><i class="iconfont">&#xe607;</i></th>
-                                                <th>UserID</th>
-                                                <th>Name</th>
-                                                <th>Usertype</th>
-                                                <th>Email</th>
-                                                <th>City</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody id="accountTable">
-                                            <%--<tr>--%>
-                                                <%--<td align="center">--%>
-                                                    <%--<a class="btn btn-default"><i class="iconfont">&#xe624;</i></a>--%>
-                                                    <%--<a class="btn btn-danger"><i class="iconfont">&#xe600;</i></a>--%>
-                                                <%--</td>--%>
-                                                <%--<td>1</td>--%>
-                                                <%--<td class="hidden-xs">John Doe</td>--%>
-                                                <%--<td>Administrator</td>--%>
-                                                <%--<td>12691613@qq.com</td>--%>
-                                                <%--<td>La Crosse</td>--%>
-                                            <%--</tr>--%>
-                                            </tbody>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
+                                        <th>Request ID</th>
+                                        <th>Service Name</th>
+                                        <th>Username</th>
+                                        <th><i class="iconfont">&#xe607;</i></th>
 
-
+                                    </tr>
+                                    </thead>
+                                    <tbody id="accountTable">
+                                    <%--<tr>--%>
+                                    <%--<td align="center">--%>
+                                    <%--<a class="btn btn-default"><i class="iconfont">&#xe624;</i></a>--%>
+                                    <%--<a class="btn btn-danger"><i class="iconfont">&#xe600;</i></a>--%>
+                                    <%--</td>--%>
+                                    <%--<td>1</td>--%>
+                                    <%--<td class="hidden-xs">John Doe</td>--%>
+                                    <%--<td>Administrator</td>--%>
+                                    <%--<td>12691613@qq.com</td>--%>
+                                    <%--<td>La Crosse</td>--%>
+                                    <%--</tr>--%>
+                                    </tbody>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
-                        <!-- /.row -->
+
 
                     </div>
-                    <!-- /#content -->
-
-                    <!-- /#right -->
                 </div>
-                <!-- /#wrap -->
+                <!-- /.row -->
+
             </div>
+            <!-- /#content -->
+
+            <!-- /#right -->
         </div>
+        <!-- /#wrap -->
     </div>
+</div>
+</div>
 </div>
 <script src="assets/lib/jquery/jquery.js"></script>
 
@@ -222,40 +209,57 @@
 <script>
     toastr.options.positionClass = 'toast-top-center';
 
-    function deleteAccount(thisObj,idcount)
+    function permitRequest(thisObj,idcount)
     {
-        var accountname=document.getElementById("accountname"+idcount).innerText;
+        var eventid=document.getElementById("eventid"+idcount).innerText;
         $.ajax(
             {
                 type: "POST" ,
-                url: "/DeleteAccount" ,
-                data: "accountname=" +accountname,
+                url: "/PermitRequest" ,
+                data: "eventid=" +eventid,
                 success: function (data)
                 {
-                        toastr.success('Delete Success');
-                    setTimeout(function(){window.location.href="/getManageJsp";},2000);
+                    toastr.success('Permit Request');
+                    setTimeout(function(){window.location.href="/TurnToPageServiceRequest";},2000);
                 }
             })
+
     }
-    
-    
+
+
+    function deleteRequest(thisObj,idcount)
+    {
+        var eventid=document.getElementById("eventid"+idcount).innerText;
+        $.ajax(
+            {
+                type: "POST" ,
+                url: "/DeleteRequest" ,
+                data: "eventid=" +eventid,
+                success: function (data)
+                {
+                    toastr.success('Decline Request');
+                    setTimeout(function(){window.location.href="/TurnToPageServiceRequest";},2000);
+                }
+            })
+
+    }
 </script>
 <script type="text/javascript">
     $(function() {
         $.ajax(
             {
                 type: "POST",
-                url: "/getAllAccount",
+                url: "/InitialRequestInformation",
                 success: function (data) {
 
-                    var count = Object.keys(data).length
+                    var count = Object.keys(data).length;
                     for(var x=0;x<count;x++)
                     {
                         var row=document.createElement("tr"); //创建行
 
-                        for(var y=0;y<6;y++)
+                        for(var y=0;y<4;y++)
                         {
-                            if(y==0)
+                            if(y==3)
                             {
                                 var td1 = document.createElement("td"); //创建单元格
                                 td1.align = "center";
@@ -263,18 +267,19 @@
                                 var i1 = document.createElement("i");
                                 var a2 = document.createElement("a");
                                 var i2 = document.createElement("i");
-                                a2.setAttribute("onclick", "deleteAccount(this," + x + ")");
+                                a1.setAttribute("onclick", "permitRequest(this," + x + ")");
+                                a2.setAttribute("onclick", "deleteRequest(this," + x + ")");
                                 a1.title = "Terminate";
                                 a2.title = "Delete";
-                                a1.className = 'btn btn-default';
+                                a1.className = 'btn btn-success';
                                 a2.className = 'btn btn-danger';
                                 i1.className = 'iconfont';
                                 i2.className = 'iconfont';
                                 a1.appendChild(i1);
                                 a2.appendChild(i2);
                                 // i1.appendChild(document.createTextNode("&#xe624;"));
-                                i1.innerHTML = "&#xe624;";
-                                i2.innerHTML = "&#xe600";
+                                i1.innerHTML = "&#xe613;";
+                                i2.innerHTML = "&#xe604;";
 
                                 //i2.appendChild(document.createTextNode("&#xe600;"));
                                 //                                $("#discussionTable").trigger("create");//为单元格添加内容
@@ -287,47 +292,30 @@
 
                                 row.appendChild(td1); //将单元格添加到行内
                             }
+                            else if(y==0)
+                            {
+                                var td1=document.createElement("td"); //创建单元格
+                                td1.id='eventid'+x;
+                                td1.appendChild(document.createTextNode(data[x].eventid)); //为单元格添加内容
+                                row.appendChild(td1); //将单元格添加到行内
+                            }
                             else if(y==1)
                             {
                                 var td1=document.createElement("td"); //创建单元格
-
-                                td1.appendChild(document.createTextNode(data[x].userid)); //为单元格添加内容
+                                td1.id='servicename'+x;
+                                td1.appendChild(document.createTextNode(data[x].username)); //为单元格添加内容
                                 row.appendChild(td1); //将单元格添加到行内
                             }
+
+
                             else if(y==2)
                             {
                                 var td1=document.createElement("td"); //创建单元格
 
-                                td1.id='accountname'+x;
-                                td1.appendChild(document.createTextNode(data[x].username)); //为单元格添加内容
+                                td1.appendChild(document.createTextNode(data[x].servicename)); //为单元格添加内容
 
                                 row.appendChild(td1); //将单元格添加到行内
                             }
-                            else if(y==3)
-                            {
-                                var td1=document.createElement("td"); //创建单元格
-
-                                td1.appendChild(document.createTextNode(distinguishUserType(data[x].type))); //为单元格添加内容
-
-                                row.appendChild(td1); //将单元格添加到行内
-                            }
-                            else if(y==4)
-                            {
-                                var td1=document.createElement("td"); //创建单元格
-
-                                td1.appendChild(document.createTextNode(data[x].email)); //为单元格添加内容
-
-                                row.appendChild(td1); //将单元格添加到行内
-                            }
-                            else if(y==5)
-                            {
-                                var td1=document.createElement("td"); //创建单元格
-
-                                td1.appendChild(document.createTextNode(data[x].city)); //为单元格添加内容
-
-                                row.appendChild(td1); //将单元格添加到行内
-                            }
-
                         }
                         document.getElementById("accountTable").append(row); //将行添加到<tbody>中
                     }
@@ -336,24 +324,6 @@
                 }
             })
     });
-    function distinguishUserType(usertype){
-        if(usertype==0)
-        {
-            return "admin";
-        }
-
-       else if(usertype==1)
-        {
-            return "manager";
-        }
-
-       else if(usertype==2)
-        {
-            return "volunteer";
-        }
-    }
-
-
 </script>
 
 </body>

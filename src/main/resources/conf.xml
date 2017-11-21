@@ -28,6 +28,7 @@
         <!-- 注册UserMapper映射接口-->
         <mapper class="mapping.AccountMapperI"/>
         <mapper class="mapping.ServiceMapperI"/>
+        <mapper class="mapping.EventMapperI"/>
     </mappers>
 
 </configuration>

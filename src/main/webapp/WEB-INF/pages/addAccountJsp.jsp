@@ -88,6 +88,10 @@
 
     <p>UserName:</p>
     <input type="text" class="form-control" placeholder="Please input a username" id="username"/>
+    <p>First Name:</p>
+    <input type="text" class="form-control" placeholder="Please input a firstname" id="firstname"/>
+    <p>Last Name:</p>
+    <input type="text" class="form-control" placeholder="Please input a lastname" id="lastname"/>
     <p>Password:</p>
     <input type="password" class="form-control" placeholder="Please input password" id="password1"/>
     <p>Password again:</p>
@@ -110,6 +114,8 @@
     function addAccount() {
 //        alert("qwq");
         var username=document.getElementById("username").value;
+        var firstname=document.getElementById("firstname").value;
+        var lastname=document.getElementById("lastname").value;
         var password1=document.getElementById("password1").value;
         var password2=document.getElementById("password2").value;
         var error = document. getElementById("errorinfer");
@@ -127,11 +133,11 @@
             {
                 type: "POST" ,
                 url: "/AddNewAccountByAdmin" ,
-                data: "username=" +username+"&password=" +password1+"&usertype="+usertype ,
+                data: "username=" +username+"&password=" +password1+"&usertype="+usertype+"&firstname="+firstname+"&lastname="+lastname ,
                 dataType: "text",
                 success: function (data)
                 {
-           window.location.href="/TurnToManagePage";
+                      window.location.href="/TurnToManagePage";
                 }
             }
         );

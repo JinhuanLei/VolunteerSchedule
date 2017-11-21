@@ -8,6 +8,28 @@ public class account {
     private String email;
     private String phonenumber;
     private String city;
+    private String firstname;
+
+
+
+    private String lastname;
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
 
     public String getPhonenumber() {
         return phonenumber;

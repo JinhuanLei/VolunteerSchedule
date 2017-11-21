@@ -1,6 +1,7 @@
 package mapping;
 
 import domain.service;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 
@@ -11,8 +12,8 @@ public interface ServiceMapperI {
     public int add(service ser);
 
 
-    @Select("select * from service where serviceid=#{id}")
-     public service getServiceByID(int id);
+    @Select("select * from service where serviceid=#{serviceid}")
+     public service getServiceByID(int serviceid);
     //    //使用@Update注解指明update方法要执行的SQL
 //    @Update("update users set name=#{name},age=#{age} where id=#{id}")
 //    public int update(account user);
@@ -20,7 +21,8 @@ public interface ServiceMapperI {
     @Select("select * from service")
     public List<service> getAllServices();
 
-
+    @Delete("delete from service where serviceid=#{serviceid}")
+    public int deleteById(int serviceid);
 
 //    @Select("select * from seatsreserve where date=#{date}")
 //    public List<account> getByDate(String date);

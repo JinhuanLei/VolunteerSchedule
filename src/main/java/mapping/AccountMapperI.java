@@ -4,11 +4,12 @@ import domain.account;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 
 public interface AccountMapperI {
-    @Insert("insert into account(userid,username,password,type,email,phonenumber,city) values(#{userid},#{username}, #{password},#{type},#{email},#{phonenumber},#{city})")
+    @Insert("insert into account(userid,username,password,type,email,phonenumber,city,firstname,lastname) values(#{userid},#{username}, #{password},#{type},#{email},#{phonenumber},#{city},#{firstname},#{lastname})")
     public int add(account act);
 
 
@@ -25,7 +26,8 @@ public interface AccountMapperI {
     @Delete("delete from account where username=#{accountname}")
     public int deleteByName(String accountname);
 
-
+    @Update("update account set firstname=#{firstname}, lastname=#{lastname}, email=#{email}, city=#{city}, phonenumber=#{phonenumber} where username=#{username}")
+    public int update(account a);
 //    @Select("select * from seatsreserve where date=#{date}")
 //    public List<account> getByDate(String date);
     //使用@Select注解指明getAll方法要执行的SQL

@@ -57,10 +57,10 @@
     <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
-                <li class="active"><a href="/getManageJsp">Overview <span class="sr-only">(current)</span></a></li>
+                <li class="active"><a href="/TurnToServiceTable">Overview <span class="sr-only">(current)</span></a></li>
                 <li class="hidden-ad" id="reportli"><a href="/TurnToServiceTable">Report</a></li>
                 <li class="hidden-ad" id="addreportli"><a href="/getReportJsp">Add Report</a></li>
-
+                <li class="hidden-ad" id="addreportli1"><a href="/TurnToPageServiceRequest">Service Request  <span class="badge">3</span></a></li>
             </ul>
             <!--
                 作者：576253806@qq.com
@@ -106,8 +106,6 @@
             <textarea class="form-control" rows="3" placeholder="Say something about Event" id="introduction"></textarea>
             <br>
             <input type="submit" class="btn btn-success" value="Summit" style="float: right" onclick="addReport()"/>
-
-
             </div>
 <script src="assets/lib/jquery/jquery.js"></script>
 <script src="build/toastr.min.js"></script>

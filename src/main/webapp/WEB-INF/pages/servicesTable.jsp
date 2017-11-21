@@ -33,6 +33,15 @@
             src: url('//at.alicdn.com/t/font_444600_mot3jg1520t9ms4i.eot?#iefix') format('embedded-opentype'), url('//at.alicdn.com/t/font_444600_mot3jg1520t9ms4i.woff') format('woff'), url('//at.alicdn.com/t/font_444600_mot3jg1520t9ms4i.ttf') format('truetype'), url('//at.alicdn.com/t/font_444600_mot3jg1520t9ms4i.svg#iconfont') format('svg');
         }
 
+        @font-face {
+            font-family: 'iconfont';  /* project id 481344 */
+            src: url('//at.alicdn.com/t/font_481344_3j910nkydca98uxr.eot');
+            src: url('//at.alicdn.com/t/font_481344_3j910nkydca98uxr.eot?#iefix') format('embedded-opentype'),
+            url('//at.alicdn.com/t/font_481344_3j910nkydca98uxr.woff') format('woff'),
+            url('//at.alicdn.com/t/font_481344_3j910nkydca98uxr.ttf') format('truetype'),
+            url('//at.alicdn.com/t/font_481344_3j910nkydca98uxr.svg#iconfont') format('svg');
+        }
+
         .iconfont {
             font-family: "iconfont";
             font-size: 16px;
@@ -46,18 +55,6 @@
     <script src="build/toastr.min.js"></script>
     <script type="text/javascript">
         toastr.options.positionClass = 'toast-top-center';
-        function deleteFunction()
-        {
-            var del=prompt("AccountID");
-        }
-
-
-
-        function addPMFunction()
-        {
-            var add=prompt("AccountID");
-
-        }
         function changeaTOVolunteer() {
             window.location.href="/GetAddAccountJsp";
         }
@@ -117,12 +114,12 @@
     <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
-                <li class="active"><a href="/getManageJsp">Overview <span class="sr-only">(current)</span></a></li>
+                <li class="active"><a href="/TurnToServiceTable">Overview <span class="sr-only">(current)</span></a></li>
                 <%--<li class="visible-ad-block" id="accountli"><a href="/getManageJsp">Account</a></li>--%>
                 <%--<li class="hidden-ad" id="addaccountli"><a href="/GetAddAccountJsp">Add Account</a></li>--%>
                 <li class="hidden-ad" id="reportli"><a href="/TurnToServiceTable">Service</a></li>
                 <li class="hidden-ad" id="addreportli"><a href="/getReportJsp">Add Service</a></li>
-
+                <li class="hidden-ad" id="addreportli1"><a href="/TurnToPageServiceRequest">Service Request  <span class="badge">3</span></a></li>
             </ul>
 
         </div>
@@ -138,14 +135,14 @@
             </h1>
 
             <div id="content">
-                <div class="outer">
-                    <div class="inner bg-light lter">
+                <%--<div class="outer">--%>
+                    <%--<div class="inner bg-light lter">--%>
                         <!--Begin Datatables-->
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="box">
                                     <header>
-                                        <div class="icons"><i class="fa fa-table"></i></div>
+
                                         <h5>Service Table</h5>
                                     </header>
                                     <div id="collapse4" class="body">
@@ -219,18 +216,18 @@
 <script>
     toastr.options.positionClass = 'toast-top-center';
 
-    function deleteAccount(thisObj,idcount)
+    function deleteService(thisObj,idcount)
     {
-        var accountname=document.getElementById("accountname"+idcount).innerText;
+        var serviceid=document.getElementById("serviceid"+idcount).innerText;
         $.ajax(
             {
                 type: "POST" ,
-                url: "/DeleteAccount" ,
-                data: "accountname=" +accountname,
+                url: "/DeleteService" ,
+                data: "serviceid=" +serviceid,
                 success: function (data)
                 {
                     toastr.success('Delete Success');
-                    setTimeout(function(){window.location.href="/getManageJsp";},2000);
+                    setTimeout(function(){window.location.href="/TurnToServiceTable";},2000);
                 }
             })
 
@@ -259,7 +256,7 @@
                                 var i1 = document.createElement("i");
                                 var a2 = document.createElement("a");
                                 var i2 = document.createElement("i");
-                                a2.setAttribute("onclick", "deleteAccount(this," + x + ")");
+                                a2.setAttribute("onclick", "deleteService(this," + x + ")");
                                 a1.title = "Terminate";
                                 a2.title = "Delete";
                                 a1.className = 'btn btn-default';
@@ -270,7 +267,7 @@
                                 a2.appendChild(i2);
                                 // i1.appendChild(document.createTextNode("&#xe624;"));
                                 i1.innerHTML = "&#xe624;";
-                                i2.innerHTML = "&#xe600";
+                                i2.innerHTML = "&#xe601";
 
                                 //i2.appendChild(document.createTextNode("&#xe600;"));
                                 //                                $("#discussionTable").trigger("create");//为单元格添加内容
@@ -286,6 +283,7 @@
                             else if(y==1)
                             {
                                 var td1=document.createElement("td"); //创建单元格
+                                td1.id='serviceid'+x;
                                 td1.appendChild(document.createTextNode(data[x].serviceid)); //为单元格添加内容
                                 row.appendChild(td1); //将单元格添加到行内
                             }
