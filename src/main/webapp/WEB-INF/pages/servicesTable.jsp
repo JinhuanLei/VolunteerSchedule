@@ -56,7 +56,7 @@
     <script type="text/javascript">
         toastr.options.positionClass = 'toast-top-center';
         function changeaTOVolunteer() {
-            window.location.href="/GetAddAccountJsp";
+            window.location.href="/getReportJsp";
         }
 
         function logoutFunction()
@@ -155,7 +155,7 @@
                                                 <th>Location</th>
                                                 <th>Starttime</th>
                                                 <th>Endtime</th>
-
+                                                <th>Required people</th>
                                             </tr>
                                             </thead>
                                             <tbody id="accountTable">
@@ -246,7 +246,7 @@
                     {
                         var row=document.createElement("tr"); //创建行
 
-                        for(var y=0;y<6;y++)
+                        for(var y=0;y<7;y++)
                         {
                             if(y==0)
                             {
@@ -318,6 +318,14 @@
                                 var td1=document.createElement("td"); //创建单元格
 
                                 td1.appendChild(document.createTextNode(data[x].endtime)); //为单元格添加内容
+
+                                row.appendChild(td1); //将单元格添加到行内
+                            }
+                            else if(y==6)
+                            {
+                                var td1=document.createElement("td"); //创建单元格
+
+                                td1.appendChild(document.createTextNode(data[x].peoplenum)); //为单元格添加内容
 
                                 row.appendChild(td1); //将单元格添加到行内
                             }

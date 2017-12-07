@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import test.testmd5;
 import util.MyBatisUtil;
 
 import javax.mail.*;
@@ -92,6 +93,8 @@ public class LoginController {
         return "mainInterfaceJsp";
     }
 
+
+
     @RequestMapping(value = "/loginFunction")
     public void login(HttpSession hs,String username, String password, PrintWriter pw)
     {
@@ -100,22 +103,25 @@ public class LoginController {
         // 得到UserMapperI接口的实现类对象，UserMapperI接口的实现类对象由sqlSession.getMapper(UserMapperI.class)动态构建出来
         AccountMapperI mapper = sqlSession.getMapper(AccountMapperI.class);
         account a=mapper.getByUsername(username);
-        System.out.println(a.getPassword());
-        System.out.println(password);
-        System.out.println(a.getPassword().equals(password));
-        if(a!=null&&a.getPassword().equals(password))     //a.getPassword()==password     wrong??
+//        System.out.println(a.getPassword());
+//        System.out.println(password);
+//        System.out.println(a.getPassword().equals(password));
+        if(a!=null&& a.getPassword().equals(testmd5.getHash2(password,"MD5")))     //a.getPassword()==password     wrong??
         {
+            hs.setAttribute("username", username);
+                hs.setAttribute("usertype", a.getType());
+                hs.setAttribute("userid",a.getUserid());
             if(a.getType()==0)
             {
                 String x = "0";
-                hs.setAttribute("username", username);
-                hs.setAttribute("usertype", a.getType());
+//                hs.setAttribute("username", username);
+//                hs.setAttribute("usertype", a.getType());
                 pw.write(x);
             }
             else {
                 String x = "1";
-                hs.setAttribute("username", username);
-                hs.setAttribute("usertype", a.getType());
+//                hs.setAttribute("username", username);
+//                hs.setAttribute("usertype", a.getType());
                 pw.write(x);
             }
         }
@@ -189,7 +195,7 @@ public class LoginController {
         message.setSubject("hello");
         // 2.4 正文
         String str = "welocome  to our group <br/>" +
-                "I love you<br/>";
+                "<br/>";
         message.setContent(str, "text/html;charset=UTF-8");
         //3、发送
         Transport.send(message);

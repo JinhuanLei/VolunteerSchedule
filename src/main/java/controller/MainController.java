@@ -13,7 +13,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import util.MyBatisUtil;
 
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 
 @Controller    //千万别忘了加    。。。。。。。。。。。。。。。
@@ -62,8 +65,23 @@ public class MainController {
     }
 
 
+    @RequestMapping(value = "/CheckRequiredVolunteerNumber")
+    public void checkRequiredVolunteerNumber(PrintWriter pw,String serviceid) {
+        SqlSession sqlSession = MyBatisUtil.getSqlSession(true);
+        // 得到UserMapperI接口的实现类对象，UserMapperI接口的实现类对象由sqlSession.getMapper(UserMapperI.class)动态构建出来
+        ServiceMapperI mapper = sqlSession.getMapper(ServiceMapperI.class);
+       service ser=mapper.getServiceByID(Integer.parseInt(serviceid));
+        int peoplenum=ser.getPeoplenum();
+        System.out.println("-----------------"+peoplenum);
+        sqlSession.close();
+        pw.write(peoplenum);
+
+
+    }
+
+
     @RequestMapping(value = "/ApplyService")
-    public void applyService(PrintWriter pw, String username, String serviceid) {
+    public void applyService(PrintWriter pw, String username, String serviceid,String userid) {
         SqlSession sqlSession = MyBatisUtil.getSqlSession(true);
         // 得到UserMapperI接口的实现类对象，UserMapperI接口的实现类对象由sqlSession.getMapper(UserMapperI.class)动态构建出来
         ServiceMapperI smapper = sqlSession.getMapper(ServiceMapperI.class);
@@ -76,15 +94,31 @@ public class MainController {
 
         event e = new event();
         e.setServicename(servicename);
+        e.setUserid(Integer.parseInt(userid));
+        e.setServiceid(Integer.parseInt(serviceid));
         e.setStatus(0);
         e.setUsername(username);
-
+    e.setDate(getCurrentDate());
         int a = emapper.add(e);
         sqlSession.close();
         pw.write(1);
 
 
     }
+
+    public String getCurrentDate()
+    {
+        Locale.setDefault(Locale.ENGLISH);
+        SimpleDateFormat df1 = new SimpleDateFormat("yyyy-MM-dd");//设置日期格式
+
+        SimpleDateFormat df2 = new SimpleDateFormat("HH:mm:ss");
+        String str1=df1.format(new Date());
+        String str2=df2.format(new Date());
+
+        System.out.println(str1+" at "+str2);
+        return str1+" "+str2;
+    }
+
 
     @RequestMapping(value = "/InitialAppliedServiceForUser")
     public @ResponseBody
@@ -93,6 +127,19 @@ public class MainController {
         // 得到UserMapperI接口的实现类对象，UserMapperI接口的实现类对象由sqlSession.getMapper(UserMapperI.class)动态构建出来
         EventMapperI mapper = sqlSession.getMapper(EventMapperI.class);
         List<event> e = mapper.getEventByUsername(username);
+        //System.out.println("---------" + e.get(0));
+        sqlSession.close();
+        return e;
+    }
+
+
+    @RequestMapping(value = "/InitialReportData")
+    public @ResponseBody
+    List<event> initialReportData() {
+        SqlSession sqlSession = MyBatisUtil.getSqlSession(true);
+        // 得到UserMapperI接口的实现类对象，UserMapperI接口的实现类对象由sqlSession.getMapper(UserMapperI.class)动态构建出来
+        EventMapperI mapper = sqlSession.getMapper(EventMapperI.class);
+        List<event> e = mapper.getAllEvent();
         //System.out.println("---------" + e.get(0));
         sqlSession.close();
         return e;

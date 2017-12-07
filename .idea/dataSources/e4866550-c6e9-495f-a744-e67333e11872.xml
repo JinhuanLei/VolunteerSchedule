@@ -30,7 +30,7 @@
     </column>
     <column id="16" parent="8" name="password">
       <Position>3</Position>
-      <DataType>varchar(30)|0</DataType>
+      <DataType>varchar(50)|0</DataType>
     </column>
     <column id="17" parent="8" name="type">
       <Position>4</Position>
@@ -141,77 +141,89 @@
       <Position>4</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <index id="42" parent="11" name="event_eventid_uindex">
+    <column id="42" parent="11" name="userid">
+      <Position>5</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="43" parent="11" name="serviceid">
+      <Position>6</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="44" parent="11" name="date">
+      <Position>7</Position>
+      <DataType>varchar(60)|0</DataType>
+    </column>
+    <index id="45" parent="11" name="event_eventid_uindex">
       <ColNames>eventid</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="43" parent="11" name="PRIMARY">
+    <key id="46" parent="11" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>eventid</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="44" parent="11" name="event_eventid_uindex">
+    <key id="47" parent="11" name="event_eventid_uindex">
       <ColNames>eventid</ColNames>
       <UnderlyingIndexName>event_eventid_uindex</UnderlyingIndexName>
     </key>
-    <column id="45" parent="12" name="serviceid">
+    <column id="48" parent="12" name="serviceid">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="46" parent="12" name="servicename">
+    <column id="49" parent="12" name="servicename">
       <Position>2</Position>
       <DataType>varchar(40)|0</DataType>
     </column>
-    <column id="47" parent="12" name="location">
+    <column id="50" parent="12" name="location">
       <Position>3</Position>
       <DataType>varchar(20)|0</DataType>
     </column>
-    <column id="48" parent="12" name="starttime">
+    <column id="51" parent="12" name="starttime">
       <Position>4</Position>
       <DataType>varchar(60)|0</DataType>
     </column>
-    <column id="49" parent="12" name="endtime">
+    <column id="52" parent="12" name="endtime">
       <Position>5</Position>
       <DataType>varchar(60)|0</DataType>
     </column>
-    <column id="50" parent="12" name="contactpersonname">
+    <column id="53" parent="12" name="contactpersonname">
       <Position>6</Position>
       <DataType>varchar(20)|0</DataType>
     </column>
-    <column id="51" parent="12" name="contactinformation">
+    <column id="54" parent="12" name="contactinformation">
       <Position>7</Position>
       <DataType>varchar(20)|0</DataType>
     </column>
-    <column id="52" parent="12" name="introduction">
+    <column id="55" parent="12" name="introduction">
       <Position>8</Position>
       <DataType>varchar(400)|0</DataType>
     </column>
-    <column id="53" parent="12" name="peoplenum">
+    <column id="56" parent="12" name="peoplenum">
       <Position>9</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <key id="54" parent="12" name="PRIMARY">
+    <key id="57" parent="12" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>serviceid</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="55" parent="13" name="subscribeid">
+    <column id="58" parent="13" name="subscribeid">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="56" parent="13" name="username">
+    <column id="59" parent="13" name="username">
       <Position>2</Position>
       <DataType>varchar(50)|0</DataType>
     </column>
-    <column id="57" parent="13" name="discussion">
+    <column id="60" parent="13" name="discussion">
       <Position>3</Position>
       <DataType>varchar(50)|0</DataType>
     </column>
-    <key id="58" parent="13" name="PRIMARY">
+    <key id="61" parent="13" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>subscribeid</ColNames>
       <Primary>1</Primary>

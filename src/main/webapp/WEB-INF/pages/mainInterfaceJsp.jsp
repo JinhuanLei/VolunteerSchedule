@@ -19,7 +19,10 @@
 
     <!-- Custom styles for this template -->
     <link href="../../css/jumbotron.css" rel="stylesheet">
-
+    <link href="css/bootstrap-theme.min.css" rel="stylesheet" type="text/css" />
+    <link href="css/site.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="css/default.css">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
     <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -213,14 +216,14 @@
     <%--<div class="inner bg-light lter">--%>
     <!--Begin Datatables-->
     <div class="row">
-        <div class="col-lg-12">
+        <div class="col-md-8">
             <div class="box">
                 <header>
 
                     <h5>Service Table</h5>
                 </header>
                 <div id="collapse4" class="body">
-                    <table id="dataTable" class="table table-bordered table-condensed table-hover table-striped">
+                    <table id="dataTable" class="table table-bordered table-condensed table-hover table-striped" >
                         <thead>
                         <tr>
 
@@ -229,6 +232,7 @@
                             <th>Location</th>
                             <th>Starttime</th>
                             <th>Endtime</th>
+
                             <th><i class="iconfont">&#xe7da;</i></th>
                         </tr>
                         </thead>
@@ -254,6 +258,29 @@
         </div>
     <%--</div>--%>
     <!-- /.row -->
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <span class="glyphicon glyphicon-list-alt"></span><b>Report</b></div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <ul class="demo2" id="reportlist">
+                                <li class="news-item">man1 applied canteen at Dec 06,2017 at 23:29:49 PM</li>
+                                <li class="news-item">dou1 applied canteen at 2017-12-06 23:53:35</li>
+                                <li class="news-item">Lei applied canteen at 2017-12-07 00:49:09M</li>
+                                <li class="news-item">jdoe applied canteen at 2017-12-07 00:23:52</li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer">
+
+                </div>
+            </div>
+        </div>
+
 
 </div>
 <!-- /#content -->
@@ -286,9 +313,13 @@
 <!-- Metis demo scripts -->
 <script src="assets/js/app.js"></script>
 <script src="build/toastr.min.js"></script>
+<script src="js/jquery.bootstrap.newsbox.min.js" type="text/javascript"></script>
+
 <script type="text/javascript">
     toastr.options.positionClass = 'toast-top-center';
     $(function() {
+
+
         $.ajax(
             {
                 type: "POST",
@@ -302,7 +333,7 @@
 
                         for(var y=0;y<6;y++)
                         {
-                            if(y==5)
+                            if(y==5&&data[x].peoplenum>0)
                             {
                                 var td1 = document.createElement("td"); //创建单元格
                                 td1.align = "center";
@@ -317,6 +348,15 @@
                                 a1.appendChild(i1);
                                 i1.innerHTML = "&#xe61f;";
                                 td1.appendChild(a1);
+                                row.appendChild(td1); //将单元格添加到行内
+                            }
+                            else if(y==5&&data[x].peoplenum==0)
+                            {
+                                var td1=document.createElement("td"); //创建单元格
+                                td1.align = "center";
+                                td1.id='serviceid'+x;
+                                 td1.innerHTML="Full";
+                                //td1.appendChild(document.createTextNode()); //为单元格添加内容
                                 row.appendChild(td1); //将单元格添加到行内
                             }
                             else if(y==0)
@@ -370,24 +410,38 @@
                 }
             })
 
-//         $.ajax(
-//            {
-//                type: "POST" ,
-//                url: "/initialVolunteerData" ,
-//              success: function (data)
-//                {
-////              alert(data[0].servicename);
-//
-//
-//                     for(var x=0; x<3;x++)
-//                     {
-//                         var eleH=$("#service"+(x+1)+" h2");
-//                         var eleP=$("#service"+(x+1)+" p");
-//                         eleH.text(data[x].servicename);
-//                         eleP[0].innerHTML=data[x].introduction;
-//                     }
-//                         }
-//    })
+         $.ajax(
+            {
+                type: "POST" ,
+                url: "/InitialReportData" ,
+              success: function (data)
+                {
+//                    alert(data);
+                    var data1=eval(data);
+                    var count = Object.keys(data1).length;
+                     for(var x=0; x<count;x++)
+                     {
+                         var reportlist=$("#reportlist");
+                         var eleLi=document.createElement("li");
+                         eleLi.class="news-item";
+                         eleLi.innerHTML=data[x].username+" applied "+data[x].servicename+" at "+data[x].date ;
+                         reportlist.append(eleLi);
+                     }
+                         }
+    });
+
+
+        $(".demo2").bootstrapNews({
+            newsPerPage: 4,
+            autoplay: true,
+            pauseOnHover: true,
+            navigation: false,
+            direction: 'down',
+            newsTickerInterval: 2000,
+            onToDo: function () {
+                //console.log(this);
+            }
+        });
 
         var username="<%=session.getAttribute("username")%>";
         var type="<%=session.getAttribute("usertype")%>";   //判断是否是admin 管理员 或user
@@ -430,20 +484,6 @@
                 li0.style.display="block";
             }
 
-//            switch(type)
-//            {
-//                case 0:
-//
-//                    break;
-//
-//                case 1:
-//                    li1.style.display="block";
-//                    break;
-//                case 2:
-//
-//                    break;
-//            }
-
             $.ajax(
                 {
                     type: "POST",
@@ -485,8 +525,10 @@
                                     for(var x=0;x<count;x++)
                                     {
                                         console.log(mytable.rows[i].cells[1].innerHTML+"   "+data1[0].servicename)
-                                        if(mytable.rows[i].cells[1].innerHTML==data1[x].servicename)
+                                        if(mytable.rows[i].cells[0].innerHTML==data1[x].serviceid)
                                         {
+
+
                                             if(data1[x].status==0)
                                             {
                                                 mytable.rows[i].cells[5].innerHTML="Applying";
@@ -509,13 +551,6 @@
 
                         }
                     });
-
-
-
-
-
-
-
 
         }
         else
@@ -580,7 +615,7 @@ function applyService(thisObj,idcount) {
         {
             type: "POST" ,
             url: "/ApplyService" ,
-            data: "serviceid=" +serviceid+"&username="+"<%=session.getAttribute("username")%>",
+            data: "serviceid=" +serviceid+"&username="+"<%=session.getAttribute("username")%>"+"&userid="+"<%=session.getAttribute("userid")%>",
             dataType: "text",
             success: function (data)
             {

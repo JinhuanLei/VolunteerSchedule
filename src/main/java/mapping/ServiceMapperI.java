@@ -21,6 +21,9 @@ public interface ServiceMapperI {
     @Select("select * from service")
     public List<service> getAllServices();
 
+    @Select("update service set peoplenum=peoplenum-1 where serviceid=#{serviceid}")
+    public int deleteOneRequiredVolunteer(int serviceid);
+
     @Delete("delete from service where serviceid=#{serviceid}")
     public int deleteById(int serviceid);
 

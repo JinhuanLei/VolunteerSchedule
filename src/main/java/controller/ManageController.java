@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import test.testmd5;
 import util.MyBatisUtil;
 
 import javax.mail.*;
@@ -67,7 +68,7 @@ public class ManageController {
         account a=new account();
         int Utype=ditinguishType(usertype);
         a.setUsername(username);
-        a.setPassword(password);
+        a.setPassword(testmd5.getHash2(password,"md5"));
         a.setType(Utype);
         a.setFirstname(firstname);
         a.setLastname(lastname);
@@ -159,6 +160,8 @@ public class ManageController {
         AccountMapperI mapper = sqlSession.getMapper(AccountMapperI.class);
 
         int x=mapper.deleteByName(accountname);
+
+        sqlSession.close();
         pw.write("success");
 
 
@@ -173,6 +176,7 @@ public class ManageController {
         // return "/WEB-INF/index.jsp";
         //service ser = mapper.getServiceByID(1);
         account a=mapper.getByUsername(username);
+        sqlSession.close();
         return a;
 
     }
@@ -186,6 +190,7 @@ public class ManageController {
         int Intserviceid=Integer.parseInt(serviceid);
 
         int x=mapper.deleteById(Intserviceid);
+        sqlSession.close();
         pw.write("success");
     }
 
@@ -206,6 +211,7 @@ public class ManageController {
         // return "/WEB-INF/index.jsp";
         //service ser = mapper.getServiceByID(1);
         List<event> a=mapper.getEventBystatus();
+        sqlSession.close();
         return a;
 
     }
@@ -218,16 +224,32 @@ public class ManageController {
         EventMapperI mapper = sqlSession.getMapper(EventMapperI.class);
         // return "/WEB-INF/index.jsp";
         //service ser = mapper.getServiceByID(1);
-        int a=mapper.update(Integer.parseInt(eventid));
-        sqlSession.close();
+        System.out.println("Eventid :"+eventid);
+        int Ieventid=Integer.parseInt(eventid);
+        int a=mapper.update(Ieventid);
+        event e=mapper.getEventByEventid(Ieventid);
+
+
         SqlSession sqlSession1 = MyBatisUtil.getSqlSession(true);
         AccountMapperI amapper=sqlSession1.getMapper(AccountMapperI.class);
         System.out.println("----------------"+username);
         account acc=amapper.getByUsername(username);
 
-        String email=acc.getEmail();
-        sendEmail(email,username);
 
+
+        SqlSession sqlSession2 = MyBatisUtil.getSqlSession(true);
+       int serviceid=e.getServiceid();
+        System.out.println("serviceid"+serviceid);
+       ServiceMapperI smapper=sqlSession2.getMapper(ServiceMapperI.class);
+       service ser=smapper.getServiceByID(serviceid);
+
+        String email=acc.getEmail();
+        sendEmail(email,acc,ser);
+        int x=smapper.deleteOneRequiredVolunteer(serviceid);
+        System.out.println("执行到这了");
+        sqlSession.close();
+        sqlSession1.close();
+        sqlSession2.close();
         pw.write(1);
 
     }
@@ -245,7 +267,7 @@ public class ManageController {
         pw.write(1);
 
     }
-    public void sendEmail(String email,String username) throws GeneralSecurityException, MessagingException {
+    public void sendEmail(String email,account acc,service ser) throws GeneralSecurityException, MessagingException {
         //0.5，props和authenticator参数
         Properties props = new Properties();
         props.setProperty("mail.host", "smtp.qq.com");
@@ -301,11 +323,12 @@ public class ManageController {
 //        message.setRecipient(MimeMessage.RecipientType.TO, new InternetAddress("lei.jinhuan@uwlax.edu"));
         // 2.3 主题（标题）
         message.setRecipient(MimeMessage.RecipientType.TO, new InternetAddress(email));
-        message.setSubject("hello");
+        message.setSubject("Volunteer Services Confirmation");
         // 2.4 正文
-        String str = "Hi "+username +":<br/>Congratulations!<br/>"+
-                "Your request has been approved.<br/>"+
-                " Volunteer System";
+        String str = "Hi "+acc.getUsername() +",<br/>Thanks for applying an activity on VolunteerScheduling.com<br/>"+
+                "Congratuations ! Your request has been approved.<br/>"+"Service Detail: <br/>"+"Date :"+ser.getStarttime()+" to "+ser.getEndtime()+"<br/>"+
+                "Location："+ser.getLocation()+"<br/>"+
+                " Volunteer Scheduling System";
 
         message.setContent(str, "text/html;charset=UTF-8");
         //3、发送

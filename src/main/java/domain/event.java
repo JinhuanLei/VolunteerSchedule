@@ -3,8 +3,35 @@ package domain;
 public class event {
     private int eventid;
     private String username;
+    private int userid;
+    private int serviceid;
     private String servicename;
     private int status;
+private String date;
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public int getUserid() {
+        return userid;
+    }
+
+    public void setUserid(int userid) {
+        this.userid = userid;
+    }
+
+    public int getServiceid() {
+        return serviceid;
+    }
+
+    public void setServiceid(int serviceid) {
+        this.serviceid = serviceid;
+    }
 
     public int getEventid() {
         return eventid;

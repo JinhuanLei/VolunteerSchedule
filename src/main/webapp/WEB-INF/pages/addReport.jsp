@@ -58,8 +58,8 @@
         <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
                 <li class="active"><a href="/TurnToServiceTable">Overview <span class="sr-only">(current)</span></a></li>
-                <li class="hidden-ad" id="reportli"><a href="/TurnToServiceTable">Report</a></li>
-                <li class="hidden-ad" id="addreportli"><a href="/getReportJsp">Add Report</a></li>
+                <li class="hidden-ad" id="reportli"><a href="/TurnToServiceTable">Service</a></li>
+                <li class="hidden-ad" id="addreportli"><a href="/getReportJsp">Add Service</a></li>
                 <li class="hidden-ad" id="addreportli1"><a href="/TurnToPageServiceRequest">Service Request  <span class="badge">3</span></a></li>
             </ul>
             <!--
@@ -84,7 +84,7 @@
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
 
-            <h1 class="sub-header">Add a report </h1>
+            <h1 class="sub-header">Add a service </h1>
 
             <p>Event:</p>
             <input type="text" class="form-control" placeholder="Event Name" id="servicename"/>
@@ -100,8 +100,8 @@
             <input type="number" class="form-control" placeholder="How mamy volunteers needed." id="peoplenum"/>
             <p>Manager:</p>
             <input type="text" class="form-control" placeholder="Manager's name'" id="contactperson"/>
-            <p>ContactNumber:</p>
-            <input type="number" class="form-control" placeholder="Phone Number" id="contactinformation"/>
+            <%--<p>Phone Number:</p>--%>
+            <input type="number" style="visibility: hidden" class="form-control" placeholder="Phone Number" id="contactinformation"/>
             <p>Introduction:</p>
             <textarea class="form-control" rows="3" placeholder="Say something about Event" id="introduction"></textarea>
             <br>
@@ -152,7 +152,7 @@
                 success: function (data)
                 {
                     toastr.success('Add Success');
-                    setTimeout(function(){window.location.href="/getManageJsp";},2000);
+                    setTimeout(function(){window.location.href="/TurnToServiceTable";},2000);
                 }
             }
         );
